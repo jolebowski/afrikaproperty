@@ -1,11 +1,13 @@
 import { ArrowRight, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PROPERTIES } from "../../data/properties";
+import { useTranslation } from "../../i18n/I18nProvider";
 import { PropertyCard } from "../property/PropertyCard";
 import { Reveal } from "../ui/Reveal";
 
 export function FeaturedProperties() {
   const featuredProperties = PROPERTIES.slice(0, 3);
+  const { t } = useTranslation();
 
   return (
     <section className="py-16 lg:py-24 bg-white border-t border-gray-100">
@@ -18,13 +20,13 @@ export function FeaturedProperties() {
               <div className="flex items-center gap-2 mb-4">
                 <Star className="h-4 w-4 text-primary fill-primary" />
                 <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase">
-                  Sélection Exclusive
+                  {t("home.featured.tag", { fallback: "Sélection Exclusive" })}
                 </span>
               </div>
             </Reveal>
             <Reveal delay={0.1}>
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                Propriétés <span className="italic text-gray-400">à la Une</span>
+                {t("home.featured.title", { fallback: "Propriétés à la Une" })}
               </h2>
             </Reveal>
           </div>
@@ -35,7 +37,7 @@ export function FeaturedProperties() {
                 to="/properties" 
                 className="group inline-flex items-center text-lg font-medium text-gray-900 border-b border-gray-200 pb-1 hover:border-primary transition-colors"
               >
-                Voir toute la collection
+                {t("home.featured.viewCollection", { fallback: "Voir toute la collection" })}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Reveal>
@@ -59,7 +61,7 @@ export function FeaturedProperties() {
             to="/properties" 
             className="inline-flex items-center text-lg font-medium text-gray-900 border-b border-gray-200 pb-1"
           >
-            Voir toute la collection
+            {t("home.featured.viewCollection", { fallback: "Voir toute la collection" })}
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </div>

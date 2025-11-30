@@ -1,6 +1,7 @@
 import { ArrowRight, MapPin } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "../../i18n/I18nProvider";
 import { Reveal } from "../ui/Reveal";
 
 const ISLANDS = [
@@ -44,6 +45,7 @@ const ISLANDS = [
 
 export function InteractiveMap() {
   const [activeIsland, setActiveIsland] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   // Handle click outside to close on mobile
   const handleMapClick = (e: React.MouseEvent) => {
@@ -59,18 +61,21 @@ export function InteractiveMap() {
           <div className="max-w-2xl">
             <Reveal>
               <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase mb-4 block">
-                Exploration
+                {t("home.map.tag", { fallback: "Exploration" })}
               </span>
             </Reveal>
             <Reveal delay={0.1}>
               <h2 className="font-serif text-4xl md:text-5xl font-bold text-white leading-tight">
-                Choisissez votre <span className="text-primary italic">destination</span>
+                {t("home.map.title", { fallback: "Choisissez votre destination" })}
               </h2>
             </Reveal>
           </div>
           <Reveal delay={0.2} direction="left">
             <p className="text-gray-400 max-w-md text-right md:text-left">
-              Chaque île a son caractère unique. Survolez la carte (ou cliquez) pour découvrir les opportunités de chaque région.
+              {t("home.map.description", {
+                fallback:
+                  "Chaque île a son caractère unique. Survolez la carte (ou cliquez) pour découvrir les opportunités de chaque région.",
+              })}
             </p>
           </Reveal>
         </div>
@@ -133,15 +138,25 @@ export function InteractiveMap() {
                     <div className="md:hidden font-serif font-bold text-gray-900 text-lg mb-1">{island.name}</div>
                     
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Prix Moyen</span>
-                      <span className="text-sm font-bold text-gray-900">{island.price}</span>
+                      <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">
+                        {t("home.map.price", { fallback: "Prix Moyen" })}
+                      </span>
+                      <span className="text-sm font-bold text-gray-900">
+                        {t(`home.map.islands.${island.id}.price`, { fallback: island.price })}
+                      </span>
                     </div>
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Ambiance</span>
-                      <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">{island.vibe}</span>
+                      <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">
+                        {t("home.map.vibe", { fallback: "Ambiance" })}
+                      </span>
+                      <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
+                        {t(`home.map.islands.${island.id}.vibe`, { fallback: island.vibe })}
+                      </span>
                     </div>
                     <Link to="/destinations" className="flex items-center justify-between w-full p-2 rounded-lg hover:bg-gray-50 transition-colors group/link">
-                      <span className="text-xs font-bold text-gray-900">Explorer</span>
+                      <span className="text-xs font-bold text-gray-900">
+                        {t("home.map.explore", { fallback: "Explorer" })}
+                      </span>
                       <ArrowRight className="h-4 w-4 text-gray-400 group-hover/link:text-primary transition-colors" />
                     </Link>
                   </div>
@@ -155,9 +170,13 @@ export function InteractiveMap() {
             <div className="flex items-start gap-3">
               <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-white font-bold text-sm mb-1">Guide de l'investisseur</h4>
+                <h4 className="text-white font-bold text-sm mb-1">
+                  {t("home.map.legendTitle", { fallback: "Guide de l'investisseur" })}
+                </h4>
                 <p className="text-gray-400 text-xs leading-relaxed">
-                  Survolez les points pour comparer rapidement les zones d'investissement.
+                  {t("home.map.legendText", {
+                    fallback: "Survolez les points pour comparer rapidement les zones d'investissement.",
+                  })}
                 </p>
               </div>
             </div>

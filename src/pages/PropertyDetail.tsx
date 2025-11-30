@@ -1,5 +1,6 @@
 import { ArrowLeft, Bath, Bed, MapPin, Maximize, Share2 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
+import { useTranslation } from "../i18n/I18nProvider";
 import { ContactForm } from "../components/property/ContactForm";
 import { PropertyAmenities } from "../components/property/PropertyAmenities";
 import { PropertyGallery } from "../components/property/PropertyGallery";
@@ -11,13 +12,16 @@ import { PROPERTIES } from "../data/properties";
 export function PropertyDetail() {
   const { id } = useParams();
   const property = PROPERTIES.find((p) => p.id === id);
+  const { t, formatCurrency } = useTranslation();
 
   if (!property) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center">
-        <h1 className="text-2xl font-serif font-bold mb-4">Propriété non trouvée</h1>
+        <h1 className="text-2xl font-serif font-bold mb-4">
+          {t("property.detail.notFound", { fallback: "Propriété non trouvée" })}
+        </h1>
         <Link to="/properties">
-          <Button>Retour aux propriétés</Button>
+          <Button>{t("property.detail.back", { fallback: "Retour aux propriétés" })}</Button>
         </Link>
       </div>
     );
@@ -30,7 +34,7 @@ export function PropertyDetail() {
         <div className="mb-6">
           <Link to="/properties" className="inline-flex items-center text-gray-500 hover:text-primary transition-colors">
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Retour aux propriétés
+            {t("property.detail.back", { fallback: "Retour aux propriétés" })}
           </Link>
         </div>
 
@@ -41,9 +45,19 @@ export function PropertyDetail() {
             <div className="flex flex-col md:flex-row justify-between items-start gap-4">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  {property.isNew && <Badge variant="default">Nouveau</Badge>}
-                  {property.isExclusive && <Badge variant="secondary">Exclusif</Badge>}
-                  <Badge variant="outline" className="uppercase">Achat</Badge>
+                  {property.isNew && (
+                    <Badge variant="default">
+                      {t("property.badges.new", { fallback: "Nouveau" })}
+                    </Badge>
+                  )}
+                  {property.isExclusive && (
+                    <Badge variant="secondary">
+                      {t("property.badges.exclusive", { fallback: "Exclusif" })}
+                    </Badge>
+                  )}
+                  <Badge variant="outline" className="uppercase">
+                    {t("property.badges.sale", { fallback: "Achat" })}
+                  </Badge>
                 </div>
                 <h1 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-2">
                   {property.title}
@@ -55,11 +69,11 @@ export function PropertyDetail() {
               </div>
               <div className="text-right">
                 <div className="text-3xl font-bold text-primary mb-2">
-                  {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: property.currency, maximumFractionDigits: 0 }).format(property.price)}
+                  {formatCurrency(property.price, property.currency)}
                 </div>
                 <Button variant="ghost" size="sm" className="text-gray-500">
                   <Share2 className="h-4 w-4 mr-2" />
-                  Partager
+                  {t("property.detail.share", { fallback: "Partager" })}
                 </Button>
               </div>
             </div>
@@ -72,32 +86,44 @@ export function PropertyDetail() {
               <div className="flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-sm">
                 <Bed className="h-6 w-6 text-primary mb-2" />
                 <span className="font-bold text-lg">{property.bedrooms}</span>
-                <span className="text-xs text-gray-500 uppercase">Chambres</span>
+                <span className="text-xs text-gray-500 uppercase">
+                  {t("property.metrics.bedrooms", { fallback: "Chambres" })}
+                </span>
               </div>
               <div className="flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-sm">
                 <Bath className="h-6 w-6 text-primary mb-2" />
                 <span className="font-bold text-lg">{property.bathrooms}</span>
-                <span className="text-xs text-gray-500 uppercase">Salles de bain</span>
+                <span className="text-xs text-gray-500 uppercase">
+                  {t("property.metrics.bathrooms", { fallback: "Salles de bain" })}
+                </span>
               </div>
               <div className="flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-sm">
                 <Maximize className="h-6 w-6 text-primary mb-2" />
                 <span className="font-bold text-lg">{property.area}</span>
-                <span className="text-xs text-gray-500 uppercase">m² Surface</span>
+                <span className="text-xs text-gray-500 uppercase">
+                  {t("property.metrics.areaUnit", { fallback: "m²" })}{" "}
+                  {t("property.metrics.area", { fallback: "Surface" })}
+                </span>
               </div>
             </div>
 
             {/* Description */}
             <div className="bg-white rounded-xl p-8 shadow-sm">
-              <h2 className="font-serif text-2xl font-bold mb-4">Description</h2>
+              <h2 className="font-serif text-2xl font-bold mb-4">
+                {t("property.detail.descriptionTitle", { fallback: "Description" })}
+              </h2>
               <p className="text-gray-600 leading-relaxed mb-6">
-                Découvrez cette magnifique propriété située au cœur de {property.location}. 
-                Offrant des prestations haut de gamme et une architecture moderne, ce bien est idéal pour 
-                un investissement locatif ou une résidence secondaire. Profitez d'une vue imprenable 
-                et d'un cadre de vie exceptionnel.
+                {t("property.detail.descriptionParagraph1", {
+                  fallback:
+                    "Découvrez cette magnifique propriété située au cœur de {{location}}. Offrant des prestations haut de gamme et une architecture moderne, ce bien est idéal pour un investissement locatif ou une résidence secondaire. Profitez d'une vue imprenable et d'un cadre de vie exceptionnel.",
+                  params: { location: property.location },
+                })}
               </p>
               <p className="text-gray-600 leading-relaxed">
-                Les finitions sont soignées, avec des matériaux nobles importés. La résidence dispose 
-                de toutes les commodités nécessaires pour un confort optimal.
+                {t("property.detail.descriptionParagraph2", {
+                  fallback:
+                    "Les finitions sont soignées, avec des matériaux nobles importés. La résidence dispose de toutes les commodités nécessaires pour un confort optimal.",
+                })}
               </p>
             </div>
 
@@ -106,11 +132,17 @@ export function PropertyDetail() {
 
             {/* Map Placeholder */}
             <div className="bg-white rounded-xl p-8 shadow-sm">
-              <h2 className="font-serif text-2xl font-bold mb-4">Localisation</h2>
+              <h2 className="font-serif text-2xl font-bold mb-4">
+                {t("property.detail.locationTitle", { fallback: "Localisation" })}
+              </h2>
               <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center text-gray-500">
                 <div className="text-center">
                   <MapPin className="h-10 w-10 mx-auto mb-2 opacity-50" />
-                  <p>Carte interactive indisponible dans la maquette</p>
+                  <p>
+                    {t("property.detail.mapPlaceholder", {
+                      fallback: "Carte interactive indisponible dans la maquette",
+                    })}
+                  </p>
                 </div>
               </div>
             </div>
@@ -119,7 +151,7 @@ export function PropertyDetail() {
           {/* Sidebar */}
           <div className="space-y-8">
             <ContactForm />
-            <PropertyInvestmentProjection price={property.price} />
+            <PropertyInvestmentProjection price={property.price} currency={property.currency} />
           </div>
         </div>
       </div>

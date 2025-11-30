@@ -1,6 +1,7 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { PageHero } from "../components/ui/PageHero";
+import { useTranslation } from "../i18n/I18nProvider";
 import { cn } from "../lib/utils";
 
 const FAQS = [
@@ -24,18 +25,25 @@ const FAQS = [
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { t } = useTranslation();
+  const faqs =
+    (t("faqPage.items", {
+      fallback: FAQS,
+    }) as typeof FAQS) || FAQS;
 
   return (
     <main>
       <PageHero
-        title="Questions Fréquentes"
-        subtitle="Tout ce que vous devez savoir sur l'investissement immobilier au Cap-Vert."
+        title={t("faqPage.title", { fallback: "Questions Fréquentes" })}
+        subtitle={t("faqPage.subtitle", {
+          fallback: "Tout ce que vous devez savoir sur l'investissement immobilier au Cap-Vert.",
+        })}
       />
 
       <section className="py-20 bg-gray-50">
         <div className="container-custom max-w-3xl">
           <div className="space-y-4">
-            {FAQS.map((faq, index) => (
+            {faqs.map((faq, index) => (
               <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                 <button
                   className="w-full px-6 py-4 flex items-center justify-between text-left font-medium text-gray-900 hover:bg-gray-50 transition-colors"

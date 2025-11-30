@@ -3,10 +3,12 @@ import { Filters } from "../components/property/Filters";
 import { PropertyGrid } from "../components/property/PropertyGrid";
 import { SortBar } from "../components/property/SortBar";
 import { PROPERTIES } from "../data/properties";
+import { useTranslation } from "../i18n/I18nProvider";
 
 
 export function PropertiesList() {
   const [sortValue, setSortValue] = useState("newest");
+  const { t } = useTranslation();
 
   // Mock sorting logic
   const sortedProperties = [...PROPERTIES].sort((a, b) => {
@@ -30,7 +32,8 @@ export function PropertiesList() {
           {/* Sort Bar & Results */}
           <div className="flex justify-between items-center">
             <div className="text-gray-500 text-sm">
-              <span className="font-medium text-gray-900">{sortedProperties.length}</span> résultats
+              <span className="font-medium text-gray-900">{sortedProperties.length}</span>{" "}
+              {t("property.list.resultsLabel", { fallback: "résultats" })}
             </div>
             <SortBar 
               totalItems={sortedProperties.length} 
@@ -45,7 +48,7 @@ export function PropertiesList() {
             {/* Pagination (Mock) */}
             <div className="mt-12 flex justify-center gap-2">
               <button className="px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-600 hover:bg-gray-50 disabled:opacity-50" disabled>
-                Précédent
+                {t("property.list.pagination.previous", { fallback: "Précédent" })}
               </button>
               <button className="px-4 py-2 border border-primary bg-primary text-white rounded-md">
                 1
@@ -54,7 +57,7 @@ export function PropertiesList() {
                 2
               </button>
               <button className="px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-600 hover:bg-gray-50">
-                Suivant
+                {t("property.list.pagination.next", { fallback: "Suivant" })}
               </button>
             </div>
           </div>

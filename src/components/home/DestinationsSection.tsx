@@ -1,5 +1,6 @@
 import { ArrowRight, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "../../i18n/I18nProvider";
 import { Reveal } from "../ui/Reveal";
 
 const DESTINATIONS = [
@@ -38,6 +39,15 @@ const DESTINATIONS = [
 ];
 
 export function DestinationsSection() {
+  const { t } = useTranslation();
+
+  const cardKeyMap: Record<string, string> = {
+    "sal": "sal",
+    "boa-vista": "boaVista",
+    "santiago": "santiago",
+    "sao-vicente": "saoVicente",
+  };
+
   return (
     <section className="py-16 lg:py-24 bg-white">
       <div className="container-custom">
@@ -47,19 +57,19 @@ export function DestinationsSection() {
           <div className="max-w-2xl">
             <Reveal>
               <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase mb-4 block">
-                Explorer
+                {t("home.destinations.tag", { fallback: "Explorer" })}
               </span>
             </Reveal>
             <Reveal delay={0.1}>
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                Destinations <span className="italic text-gray-400">Phares</span>
+                {t("home.destinations.title", { fallback: "Destinations Phares" })}
               </h2>
             </Reveal>
           </div>
           <div className="hidden md:block">
             <Reveal delay={0.2} direction="left">
               <Link to="/destinations" className="group inline-flex items-center text-lg font-medium text-gray-900 border-b border-gray-200 pb-1 hover:border-primary transition-colors">
-                Voir toutes les îles
+                {t("home.destinations.viewAll", { fallback: "Voir toutes les îles" })}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Reveal>
@@ -90,7 +100,9 @@ export function DestinationsSection() {
                   {/* Top Tag */}
                   <div className="self-start">
                     <span className="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-white text-xs font-medium tracking-wide">
-                      {destination.tag}
+                      {t(`home.destinations.cards.${cardKeyMap[destination.id] ?? destination.id}.tag`, {
+                        fallback: destination.tag,
+                      })}
                     </span>
                   </div>
 
@@ -98,7 +110,10 @@ export function DestinationsSection() {
                   <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     <div className="flex items-center gap-2 text-white/80 text-sm mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                       <MapPin className="h-4 w-4" />
-                      <span>{destination.count} propriétés</span>
+                      <span>
+                        {destination.count}{" "}
+                        {t("home.destinations.propertiesCount", { fallback: "propriétés" })}
+                      </span>
                     </div>
                     
                     <h3 className="font-serif text-3xl font-bold text-white mb-2">
@@ -106,7 +121,10 @@ export function DestinationsSection() {
                     </h3>
                     
                     <p className="text-gray-300 text-sm leading-relaxed line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
-                      {destination.description}
+                      {t(
+                        `home.destinations.cards.${cardKeyMap[destination.id] ?? destination.id}.description`,
+                        { fallback: destination.description }
+                      )}
                     </p>
                   </div>
                 </div>
@@ -118,7 +136,7 @@ export function DestinationsSection() {
         {/* Mobile Link */}
         <div className="mt-12 text-center md:hidden">
           <Link to="/destinations" className="inline-flex items-center text-lg font-medium text-gray-900 border-b border-gray-200 pb-1">
-            Voir toutes les îles
+            {t("home.destinations.viewAll", { fallback: "Voir toutes les îles" })}
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </div>

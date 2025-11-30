@@ -1,8 +1,14 @@
 import { Search } from "lucide-react";
 import { Button } from "../ui/Button";
 import { Reveal } from "../ui/Reveal";
+import { useTranslation } from "../../i18n/I18nProvider";
 
 export function Hero() {
+  const { t } = useTranslation();
+
+  const title = t<string>("home.hero.title", { fallback: "L'Immobilier d'Exception" });
+  const accent = t<string>("home.hero.accent", { fallback: "au Cap-Vert" });
+
   return (
     <div className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -20,14 +26,17 @@ export function Hero() {
         <div className="flex flex-col items-center">
           <Reveal delay={0.2}>
             <h1 className="font-serif text-4xl md:text-6xl font-bold text-white leading-[1.1]">
-              L'Immobilier d'Exception <br />
-              <span className="italic font-light">au Cap-Vert</span>
+              {title} <br />
+              <span className="italic font-light">{accent}</span>
             </h1>
           </Reveal>
           
           <Reveal delay={0.4}>
             <p className="text-lg md:text-xl mb-10 max-w-2xl text-gray-200 font-light">
-              Découvrez une sélection exclusive de propriétés de luxe, villas en bord de mer et opportunités d'investissement uniques.
+              {t("home.hero.subtitle", {
+                fallback:
+                  "Découvrez une sélection exclusive de propriétés de luxe, villas en bord de mer et opportunités d'investissement uniques.",
+              })}
             </p>
           </Reveal>
 
@@ -35,34 +44,42 @@ export function Hero() {
             {/* Search Bar */}
             <div className="bg-white p-2 rounded-full shadow-2xl max-w-3xl mx-auto flex flex-col md:flex-row gap-2">
               <div className="flex-1 px-6 py-3 border-b md:border-b-0 md:border-r border-gray-100">
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 text-left">Localisation</label>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 text-left">
+                  {t("home.hero.locationLabel", { fallback: "Localisation" })}
+                </label>
                 <input 
                   type="text" 
-                  placeholder="Toutes les îles" 
+                  placeholder={t("home.hero.locationPlaceholder", { fallback: "Toutes les îles" })}
                   className="w-full outline-none text-gray-900 placeholder-gray-400 font-medium bg-transparent"
                 />
               </div>
               <div className="flex-1 px-6 py-3 border-b md:border-b-0 md:border-r border-gray-100">
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 text-left">Type de bien</label>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 text-left">
+                  {t("home.hero.typeLabel", { fallback: "Type de bien" })}
+                </label>
                 <select className="w-full outline-none text-gray-900 font-medium bg-transparent cursor-pointer appearance-none">
-                  <option>Tous types</option>
-                  <option>Villa</option>
-                  <option>Appartement</option>
-                  <option>Terrain</option>
+                  <option>{t("home.hero.typeAny", { fallback: "Tous types" })}</option>
+                  <option>{t("home.hero.typeVilla", { fallback: "Villa" })}</option>
+                  <option>{t("home.hero.typeApartment", { fallback: "Appartement" })}</option>
+                  <option>{t("home.hero.typeLand", { fallback: "Terrain" })}</option>
                 </select>
               </div>
               <div className="flex-1 px-6 py-3">
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 text-left">Budget</label>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 text-left">
+                  {t("home.hero.budgetLabel", { fallback: "Budget" })}
+                </label>
                 <select className="w-full outline-none text-gray-900 font-medium bg-transparent cursor-pointer appearance-none">
-                  <option>Tout budget</option>
-                  <option>100k - 250k €</option>
-                  <option>250k - 500k €</option>
-                  <option>500k € +</option>
+                  <option>{t("home.hero.budgetAny", { fallback: "Tout budget" })}</option>
+                  <option>{t("home.hero.budget1", { fallback: "100k - 250k €" })}</option>
+                  <option>{t("home.hero.budget2", { fallback: "250k - 500k €" })}</option>
+                  <option>{t("home.hero.budget3", { fallback: "500k € +" })}</option>
                 </select>
               </div>
               <Button size="lg" className="rounded-full px-8 h-auto py-3 md:py-0">
                 <Search className="h-5 w-5 md:mr-2" />
-                <span className="hidden md:inline">Rechercher</span>
+                <span className="hidden md:inline">
+                  {t("home.hero.search", { fallback: "Rechercher" })}
+                </span>
               </Button>
             </div>
           </Reveal>

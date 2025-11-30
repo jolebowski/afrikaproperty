@@ -2,38 +2,36 @@
 import { HelpCircle, Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "../../i18n/I18nProvider";
 import { cn } from "../../lib/utils";
 import { Reveal } from "../ui/Reveal";
 
-const FAQS = [
-  {
-    question: "Peut-on acheter en tant qu’étranger ?",
-    answer: "Absolument. Le Cap-Vert garantit la pleine propriété aux investisseurs étrangers, avec exactement les mêmes droits et protections juridiques que les citoyens nationaux. Il n'y a aucune restriction sur l'achat de biens immobiliers."
-  },
-  {
-    question: "Quelles sont les taxes et la fiscalité ?",
-    answer: "La fiscalité est très attractive. L'impôt sur les revenus locatifs est un taux forfaitaire unique de 20%. La taxe foncière annuelle (IUP) est d'environ 1.5% de la valeur fiscale du bien. De plus, il existe des conventions fiscales pour éviter la double imposition avec de nombreux pays."
-  },
-  {
-    question: "Comment gérer mon bien à distance ?",
-    answer: "C'est notre spécialité. Nous vous mettons en relation avec des sociétés de gestion locative de confiance qui s'occupent de tout : marketing, check-in/out, ménage et maintenance. Vous percevez vos loyers sans avoir à gérer le quotidien."
-  },
-  {
-    question: "Quelles sont les garanties juridiques ?",
-    answer: "Le système juridique cap-verdien est basé sur le droit civil (similaire au Portugal et à la France). Toutes les transactions passent par notaire et sont enregistrées au Registre Foncier (Registo Predial), ce qui vous assure un titre de propriété incontestable."
-  },
-  {
-    question: "Je suis promoteur, comment diffuser mes projets ?",
-    answer: (
-      <span>
-        Nous sélectionnons rigoureusement nos partenaires. Si vous proposez des biens d'exception, vous pouvez soumettre votre dossier via notre <Link to="/publish" className="text-primary hover:underline font-medium">Espace Promoteurs</Link>. Une fois validé, vous accéderez à notre clientèle d'investisseurs internationaux.
-      </span>
-    )
-  }
-];
-
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { t } = useTranslation();
+
+  const faqItems =
+    (t("home.faq.items", {
+      fallback: [],
+    }) as Array<{ question: string; answer: string }>) ?? [];
+
+  const renderAnswer = (answer: string) => {
+    if (typeof answer !== "string") return answer;
+    if (answer.includes("{{promoterSpace}}")) {
+      const linkLabel = t("nav.promoterSpace", { fallback: "Espace Promoteur" });
+      const [before, after] = answer.split("{{promoterSpace}}");
+      return (
+        <span>
+          {before}
+          <Link to="/publish" className="text-primary hover:underline font-medium">
+            {linkLabel}
+          </Link>
+          {after}
+        </span>
+      );
+    }
+    return answer;
+  };
 
   return (
     <section className="py-24 bg-white border-t border-gray-100">
@@ -44,24 +42,26 @@ export function FAQSection() {
             <div className="flex justify-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm font-medium mb-6">
                 <HelpCircle className="h-4 w-4" />
-                <span>Questions Fréquentes</span>
+                <span>{t("home.faq.tag", { fallback: "Questions Fréquentes" })}</span>
               </div>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Tout savoir sur <span className="text-primary italic">votre investissement</span>
+              {t("home.faq.title", { fallback: "Tout savoir sur votre investissement" })}
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="text-gray-500 text-lg font-light">
-              Des réponses claires pour avancer sereinement dans votre projet.
+              {t("home.faq.description", {
+                fallback: "Des réponses claires pour avancer sereinement dans votre projet.",
+              })}
             </p>
           </Reveal>
         </div>
 
         <div className="space-y-4">
-          {FAQS.map((faq, index) => (
+          {faqItems.map((faq, index) => (
             <Reveal key={index} delay={index * 0.1 + 0.3} width="100%">
               <div 
                 className={cn(
@@ -95,7 +95,7 @@ export function FAQSection() {
                 >
                   <div className="overflow-hidden">
                     <div className="px-6 md:px-8 pb-8 pt-0 text-gray-500 leading-relaxed text-lg font-light border-t border-gray-200/50 mt-2 pt-6">
-                      {faq.answer}
+                      {renderAnswer(faq.answer)}
                     </div>
                   </div>
                 </div>

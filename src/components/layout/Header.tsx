@@ -1,17 +1,28 @@
-import { Globe, Heart, Menu, User } from "lucide-react";
+import { Heart, Menu, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "../../i18n/I18nProvider";
 import { cn } from "../../lib/utils";
 import { Button } from "../ui/Button";
+import { LanguageSelector } from "./LanguageSelector";
 import { MobileNav } from "./MobileNav";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   // Check if we are on the home page to handle transparency
   const isHomePage = location.pathname === "/";
+
+  const navLinks = [
+    { label: t("nav.buy", { fallback: "Acheter" }), path: "/properties" },
+    { label: t("nav.invest", { fallback: "Investir" }), path: "/invest" },
+    { label: t("nav.promoters", { fallback: "Promoteurs" }), path: "/publish" },
+    { label: t("nav.destinations", { fallback: "Destinations" }), path: "/destinations" },
+    { label: t("nav.blog", { fallback: "Blog" }), path: "/blog" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,19 +51,13 @@ export function Header() {
                 isScrolled || !isHomePage ? "text-primary" : "text-white"
               )}
             >
-              Afrika Property
+              {t("common.brand", { fallback: "Afrika Property" })}
             </h1>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            {[
-              { label: "Acheter", path: "/properties" },
-              { label: "Investir", path: "/invest" },
-              { label: "Promoteurs", path: "/publish" },
-              { label: "Destinations", path: "/destinations" },
-              { label: "Blog", path: "/blog" },
-            ].map((link) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
@@ -70,35 +75,7 @@ export function Header() {
 
           {/* Actions */}
           <div className="hidden md:flex items-center gap-4">
-            {/* Language Selector */}
-            <div className="relative group">
-              <button 
-                className={cn(
-                  "p-2 rounded-full transition-colors hover:bg-white/10 flex items-center gap-1",
-                  isScrolled || !isHomePage ? "text-text-secondary hover:bg-gray-100" : "text-white"
-                )}
-              >
-                <Globe className="h-5 w-5" />
-                <span className="text-xs font-medium uppercase">FR</span>
-              </button>
-              
-              <div className="absolute top-full right-0 mt-2 w-40 bg-white rounded-xl shadow-xl border border-gray-100 py-2 hidden group-hover:block animate-in fade-in zoom-in-95 duration-200">
-                {[
-                  { code: "FR", label: "Français" },
-                  { code: "EN", label: "English" },
-                  { code: "PT", label: "Português" },
-                  { code: "CV", label: "Kabuverdianu" },
-                ].map((lang) => (
-                  <button
-                    key={lang.code}
-                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors flex items-center justify-between group/item"
-                  >
-                    <span>{lang.label}</span>
-                    {lang.code === "FR" && <span className="w-1.5 h-1.5 rounded-full bg-[#C7A86A]" />}
-                  </button>
-                ))}
-              </div>
-            </div>
+            <LanguageSelector tone={isScrolled || !isHomePage ? "light" : "dark"} />
 
             <Link to="/favorites">
               <button 
@@ -129,7 +106,7 @@ export function Header() {
                   !isScrolled && isHomePage && "bg-white text-primary hover:bg-white/90"
                 )}
               >
-                Espace Promoteur
+                {t("nav.promoterSpace", { fallback: "Espace Promoteur" })}
               </Button>
             </Link>
           </div>

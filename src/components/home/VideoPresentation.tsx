@@ -1,9 +1,11 @@
 import { Play } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "../../i18n/I18nProvider";
 import { Reveal } from "../ui/Reveal";
 
 export function VideoPresentation() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <section className="relative h-[600px] md:h-[800px] bg-black overflow-hidden group">
@@ -21,13 +23,13 @@ export function VideoPresentation() {
       <div className={`absolute inset-0 flex flex-col items-center justify-center text-center p-6 transition-all duration-500 ${isPlaying ? 'opacity-0 pointer-events-none translate-y-10' : 'opacity-100 translate-y-0'}`}>
         <Reveal>
           <span className="inline-block px-3 py-1 rounded-full border border-white/30 bg-white/10 backdrop-blur-md text-white text-xs font-bold uppercase tracking-widest mb-6">
-            Découverte
+            {t("home.video.tag", { fallback: "Découverte" })}
           </span>
         </Reveal>
         
         <Reveal delay={0.1}>
           <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 max-w-4xl leading-tight">
-            L'âme du <span className="text-primary italic">Cap-Vert</span>
+            {t("home.video.title", { fallback: "L'âme du Cap-Vert" })}
           </h2>
         </Reveal>
 
@@ -43,7 +45,7 @@ export function VideoPresentation() {
 
         <Reveal delay={0.3}>
           <p className="mt-8 text-white/80 text-lg font-light tracking-wide">
-            Regarder le film
+            {t("home.video.watch", { fallback: "Regarder le film" })}
           </p>
         </Reveal>
       </div>
@@ -65,7 +67,7 @@ export function VideoPresentation() {
             onClick={() => setIsPlaying(false)}
             className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors p-4"
           >
-            Fermer
+            {t("home.video.close", { fallback: "Fermer" })}
           </button>
         </div>
       )}

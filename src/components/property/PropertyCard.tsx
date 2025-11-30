@@ -1,6 +1,7 @@
 import { Bath, Bed, ChevronLeft, ChevronRight, Heart, MapPin, Maximize } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "../../i18n/I18nProvider";
 import { cn } from "../../lib/utils";
 import type { Property } from "../../types";
 import { Badge } from "../ui/Badge";
@@ -13,6 +14,7 @@ interface PropertyCardProps {
 export function PropertyCard({ property, className }: PropertyCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const { t, formatCurrency } = useTranslation();
 
   const nextImage = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -22,14 +24,6 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
   const prevImage = (e: React.MouseEvent) => {
     e.preventDefault();
     setCurrentImageIndex((prev) => (prev - 1 + property.images.length) % property.images.length);
-  };
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("fr-FR", {
-      style: "currency",
-      currency: property.currency,
-      maximumFractionDigits: 0,
-    }).format(price);
   };
 
   return (
@@ -52,9 +46,21 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
         
         {/* Badges */}
         <div className="absolute top-4 left-4 flex flex-col gap-2">
-          {property.isNew && <Badge variant="default">Nouveau</Badge>}
-          {property.isExclusive && <Badge variant="secondary">Exclusif</Badge>}
-          {property.status === "sold" && <Badge variant="destructive">Vendu</Badge>}
+          {property.isNew && (
+            <Badge variant="default">
+              {t("property.badges.new", { fallback: "Nouveau" })}
+            </Badge>
+          )}
+          {property.isExclusive && (
+            <Badge variant="secondary">
+              {t("property.badges.exclusive", { fallback: "Exclusif" })}
+            </Badge>
+          )}
+          {property.status === "sold" && (
+            <Badge variant="destructive">
+              {t("property.badges.sold", { fallback: "Vendu" })}
+            </Badge>
+          )}
         </div>
 
         {/* Favorite Button */}
@@ -109,7 +115,7 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
             {property.title}
           </h3>
           <p className="font-semibold text-primary whitespace-nowrap ml-4">
-            {formatPrice(property.price)}
+            {formatCurrency(property.price, property.currency)}
           </p>
         </div>
 
@@ -129,7 +135,9 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
           </div>
           <div className="flex items-center gap-1">
             <Maximize className="h-4 w-4" />
-            <span>{property.area} m²</span>
+            <span>
+              {property.area} {t("property.metrics.areaUnit", { fallback: "m²" })}
+            </span>
           </div>
         </div>
       </div>
