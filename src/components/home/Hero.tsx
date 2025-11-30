@@ -1,7 +1,7 @@
 import { Search } from "lucide-react";
+import { useTranslation } from "../../i18n/I18nProvider";
 import { Button } from "../ui/Button";
 import { Reveal } from "../ui/Reveal";
-import { useTranslation } from "../../i18n/I18nProvider";
 
 export function Hero() {
   const { t } = useTranslation();
@@ -42,7 +42,7 @@ export function Hero() {
 
           <Reveal delay={0.6} width="100%">
             {/* Search Bar */}
-            <div className="bg-white p-2 rounded-full shadow-2xl max-w-3xl mx-auto flex flex-col md:flex-row gap-2">
+            <div className="bg-white p-2 rounded-3xl md:rounded-full shadow-2xl max-w-3xl mx-auto flex flex-col md:flex-row gap-2">
               <div className="flex-1 px-6 py-3 border-b md:border-b-0 md:border-r border-gray-100">
                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 text-left">
                   {t("home.hero.locationLabel", { fallback: "Localisation" })}

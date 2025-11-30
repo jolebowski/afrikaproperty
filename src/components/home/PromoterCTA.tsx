@@ -62,7 +62,7 @@ export function PromoterCTA() {
                 </Button>
               </Link>
               <Link to="/promoter/login">
-                <Button variant="outline" size="lg" className="h-16 px-10 text-lg rounded-full border-white/30 text-white hover:bg-white hover:text-gray-900 backdrop-blur-sm transition-all">
+                <Button variant="outline" size="lg" className="h-16 px-10 text-lg rounded-full border-white text-white bg-transparent hover:bg-white hover:text-black transition-all">
                   {t("home.promoter.login", { fallback: "Se connecter" })}
                 </Button>
               </Link>
