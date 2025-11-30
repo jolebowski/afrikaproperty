@@ -35,7 +35,7 @@ export function Publish() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="text-gray-400 max-w-2xl mx-auto mb-8">
-              Rejoignez le réseau Luxe CV et commencez à diffuser vos projets dès aujourd'hui.
+              Rejoignez le réseau Afrika Property et commencez à diffuser vos projets dès aujourd'hui.
             </p>
           </Reveal>
           <Reveal delay={0.4}>

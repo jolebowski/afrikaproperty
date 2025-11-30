@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <h2 className="font-serif text-2xl font-bold text-primary mb-6">LUXE CV</h2>
+            <h3 className="font-serif text-2xl font-bold text-white mb-6">Afrika Property</h3>
             <p className="text-gray-400 mb-6 leading-relaxed">
               Le premier portail immobilier premium dédié au Cap-Vert. Découvrez des propriétés d'exception et des opportunités d'investissement uniques.
             </p>
@@ -68,7 +68,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-          <p>© 2024 Luxe CV. Tous droits réservés.</p>
+          <p>&copy; 2024 Afrika Property. Tous droits réservés.</p>
           <div className="flex gap-6">
             <Link to="/legal" className="hover:text-white">Mentions légales</Link>
             <Link to="/privacy" className="hover:text-white">Confidentialité</Link>

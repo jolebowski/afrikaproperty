@@ -40,7 +40,7 @@ export function Header() {
                 isScrolled || !isHomePage ? "text-primary" : "text-white"
               )}
             >
-              LUXE CV
+              Afrika Property
             </h1>
           </Link>
 

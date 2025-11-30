@@ -29,7 +29,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
       >
         <div className="flex flex-col h-full">
           <div className="p-4 flex items-center justify-between border-b">
-            <span className="font-serif text-xl font-bold text-primary">LUXE CV</span>
+            <span className="font-serif text-xl font-bold text-primary">Afrika Property</span>
             <button onClick={onClose} className="p-2 text-gray-500">
               <X className="h-6 w-6" />
             </button>
@@ -90,7 +90,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
               <Button className="w-full mb-3">Espace Promoteur</Button>
             </Link>
             <p className="text-center text-xs text-gray-400">
-              © 2024 Luxe CV. Tous droits réservés.
+              © 2024 Afrika Property. Tous droits réservés.
             </p>
           </div>
         </div>
