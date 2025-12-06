@@ -68,6 +68,88 @@ export const translations: Record<Language, TranslationDict> = {
       privacy: "Confidentialité",
       cookies: "Cookies",
     },
+    promotion: {
+      title: "Options de Mise en Avant",
+      totalToPay: "Total à payer",
+      payAndPublish: "Payer et Publier",
+      publish: "Publier l'annonce",
+      options: {
+        "boost-7": {
+          label: "Boost 7 jours",
+          description: "Remontez votre annonce en tête de liste chaque jour pendant 7 jours.",
+          duration: "7 jours",
+        },
+        "boost-30": {
+          label: "Boost 30 jours",
+          description: "Visibilité maximale avec une remontée quotidienne pendant 30 jours.",
+          duration: "30 jours",
+        },
+        pinned: {
+          label: "Annonce épinglée",
+          description: "Votre annonce reste fixée en haut des résultats de recherche.",
+        },
+        homepage: {
+          label: "Mise en avant page d'accueil",
+          description: "Apparaissez dans la section 'À la une' de la page d'accueil haute visibilité.",
+        },
+      },
+    },
+    createListing: {
+      backToDashboard: "Retour au tableau de bord",
+      title: "Créer une nouvelle annonce",
+      subtitle: "Remplissez les informations ci-dessous pour publier votre bien.",
+      general: {
+        title: "Informations Générales",
+        listingTitle: "Titre de l'annonce",
+        listingTitlePlaceholder: "Ex: Villa de luxe avec vue mer",
+        transactionType: "Type de transaction",
+        propertyType: "Type de bien",
+        price: "Prix (€)",
+        surface: "Surface (m²)",
+        types: {
+          sale: "Vente",
+          apartment: "Appartement",
+          house: "Maison / Villa",
+          land: "Terrain",
+          commercial: "Local commercial"
+        }
+      },
+      location: {
+        title: "Localisation",
+        island: "Île",
+        city: "Ville / Quartier",
+        cityPlaceholder: "Ex: Santa Maria",
+        address: "Adresse exacte (masquée)",
+        addressPlaceholder: "Rue, numéro...",
+      },
+      details: {
+        title: "Détails & Équipements",
+        bedrooms: "Chambres",
+        bathrooms: "Salles de bain",
+        amenities: "Équipements",
+        description: "Description",
+        descriptionPlaceholder: "Décrivez votre bien en détail...",
+        list: {
+          pool: "Piscine",
+          garden: "Jardin",
+          garage: "Garage",
+          seaview: "Vue Mer",
+          ac: "Climatisation",
+          furnished: "Meublé",
+          elevator: "Ascenseur",
+          security: "Sécurité"
+        }
+      },
+      media: {
+        title: "Photos & Documents",
+        dragDrop: "Cliquez ou glissez vos photos ici",
+        format: "JPG, PNG jusqu'à 5MB",
+        documents: "Documents légaux (Optionnel)",
+        docTypes: "Plans, diagnostics, etc.",
+        add: "Ajouter"
+      },
+      draft: "Enregistrer en brouillon"
+    },
     home: {
       hero: {
         title: "L'Immobilier d'Exception",
@@ -458,6 +540,88 @@ export const translations: Record<Language, TranslationDict> = {
       legal: "Legal notice",
       privacy: "Privacy",
       cookies: "Cookies",
+    },
+    promotion: {
+      title: "Promotion Options",
+      totalToPay: "Total to pay",
+      payAndPublish: "Pay and Publish",
+      publish: "Publish listing",
+      options: {
+        "boost-7": {
+          label: "7-Day Boost",
+          description: "Bump your listing to the top every day for 7 days.",
+          duration: "7 days",
+        },
+        "boost-30": {
+          label: "30-Day Boost",
+          description: "Maximum visibility with a daily bump for 30 days.",
+          duration: "30 days",
+        },
+        pinned: {
+          label: "Pinned Listing",
+          description: "Your listing stays pinned at the top of search results.",
+        },
+        homepage: {
+          label: "Homepage Feature",
+          description: "Appear in the 'Featured' section of the homepage for high visibility.",
+        },
+      },
+    },
+    createListing: {
+      backToDashboard: "Back to dashboard",
+      title: "Create a new listing",
+      subtitle: "Fill in the information below to publish your property.",
+      general: {
+        title: "General Information",
+        listingTitle: "Listing Title",
+        listingTitlePlaceholder: "Ex: Luxury Villa with Sea View",
+        transactionType: "Transaction Type",
+        propertyType: "Property Type",
+        price: "Price (€)",
+        surface: "Surface (sqm)",
+        types: {
+          sale: "Sale",
+          apartment: "Apartment",
+          house: "House / Villa",
+          land: "Land",
+          commercial: "Commercial Space"
+        }
+      },
+      location: {
+        title: "Location",
+        island: "Island",
+        city: "City / District",
+        cityPlaceholder: "Ex: Santa Maria",
+        address: "Exact Address (hidden)",
+        addressPlaceholder: "Street, Number...",
+      },
+      details: {
+        title: "Details & Amenities",
+        bedrooms: "Bedrooms",
+        bathrooms: "Bathrooms",
+        amenities: "Amenities",
+        description: "Description",
+        descriptionPlaceholder: "Describe your property in detail...",
+        list: {
+          pool: "Pool",
+          garden: "Garden",
+          garage: "Garage",
+          seaview: "Sea View",
+          ac: "Air Conditioning",
+          furnished: "Furnished",
+          elevator: "Elevator",
+          security: "Security"
+        }
+      },
+      media: {
+        title: "Photos & Documents",
+        dragDrop: "Click or drag your photos here",
+        format: "JPG, PNG up to 5MB",
+        documents: "Legal Documents (Optional)",
+        docTypes: "Plans, diagnostics, etc.",
+        add: "Add"
+      },
+      draft: "Save as Draft"
     },
     home: {
       hero: {
@@ -850,6 +1014,88 @@ export const translations: Record<Language, TranslationDict> = {
       privacy: "Privacidade",
       cookies: "Cookies",
     },
+    promotion: {
+      title: "Opções de Destaque",
+      totalToPay: "Total a pagar",
+      payAndPublish: "Pagar e Publicar",
+      publish: "Publicar anúncio",
+      options: {
+        "boost-7": {
+          label: "Destaque 7 dias",
+          description: "Coloque o seu anúncio no topo da lista todos os dias durante 7 dias.",
+          duration: "7 dias",
+        },
+        "boost-30": {
+          label: "Destaque 30 dias",
+          description: "Visibilidade máxima com destaque diário durante 30 dias.",
+          duration: "30 dias",
+        },
+        pinned: {
+          label: "Anúncio fixado",
+          description: "O seu anúncio permanece fixo no topo dos resultados de pesquisa.",
+        },
+        homepage: {
+          label: "Destaque na página inicial",
+          description: "Apareça na secção 'Em Destaque' da página inicial para alta visibilidade.",
+        },
+      },
+    },
+    createListing: {
+      backToDashboard: "Voltar ao painel",
+      title: "Criar novo anúncio",
+      subtitle: "Preencha as informações abaixo para publicar o seu imóvel.",
+      general: {
+        title: "Informações Gerais",
+        listingTitle: "Título do anúncio",
+        listingTitlePlaceholder: "Ex: Villa de luxo com vista mar",
+        transactionType: "Tipo de transação",
+        propertyType: "Tipo de imóvel",
+        price: "Preço (€)",
+        surface: "Área (m²)",
+        types: {
+          sale: "Venda",
+          apartment: "Apartamento",
+          house: "Casa / Villa",
+          land: "Terreno",
+          commercial: "Espaço comercial"
+        }
+      },
+      location: {
+        title: "Localização",
+        island: "Ilha",
+        city: "Cidade / Bairro",
+        cityPlaceholder: "Ex: Santa Maria",
+        address: "Morada exata (oculta)",
+        addressPlaceholder: "Rua, número...",
+      },
+      details: {
+        title: "Detalhes & Comodidades",
+        bedrooms: "Quartos",
+        bathrooms: "Casas de banho",
+        amenities: "Comodidades",
+        description: "Descrição",
+        descriptionPlaceholder: "Descreva o seu imóvel em detalhe...",
+        list: {
+          pool: "Piscina",
+          garden: "Jardim",
+          garage: "Garagem",
+          seaview: "Vista Mar",
+          ac: "Ar Condicionado",
+          furnished: "Mobilado",
+          elevator: "Elevador",
+          security: "Segurança"
+        }
+      },
+      media: {
+        title: "Fotos & Documentos",
+        dragDrop: "Clique ou arraste as suas fotos aqui",
+        format: "JPG, PNG até 5MB",
+        documents: "Documentos Legais (Opcional)",
+        docTypes: "Plantas, diagnósticos, etc.",
+        add: "Adicionar"
+      },
+      draft: "Guardar como rascunho"
+    },
     home: {
       hero: {
         title: "Imobiliário de Exceção",
@@ -1240,6 +1486,88 @@ export const translations: Record<Language, TranslationDict> = {
       legal: "Notisia legal",
       privacy: "Privasidade",
       cookies: "Cookies",
+    },
+    promotion: {
+      title: "Opçon di Destaque",
+      totalToPay: "Total a paga",
+      payAndPublish: "Paga i Publika",
+      publish: "Publika anúnciu",
+      options: {
+        "boost-7": {
+          label: "Boost 7 dia",
+          description: "Pói bu anúnciu na topo di lista tudu dia duranti 7 dia.",
+          duration: "7 dia",
+        },
+        "boost-30": {
+          label: "Boost 30 dia",
+          description: "Vizibilidade másimu ku subida diáriu duranti 30 dia.",
+          duration: "30 dia",
+        },
+        pinned: {
+          label: "Anúnciu fixadu",
+          description: "Bu anúnciu ta fika fixu na topo di rezultadu di buska.",
+        },
+        homepage: {
+          label: "Destaque na pájina inisial",
+          description: "Parse na sekçon 'Destaque' di pájina inisial pa txeu vizibilidade.",
+        },
+      },
+    },
+    createListing: {
+      backToDashboard: "Volta pa painel",
+      title: "Kria novu anúnciu",
+      subtitle: "Preenxe informason abaxu pa publika bu propiedade.",
+      general: {
+        title: "Informason Geral",
+        listingTitle: "Títulu di anúnciu",
+        listingTitlePlaceholder: "Ex: Vila di lusu ku vista mar",
+        transactionType: "Tipu di transason",
+        propertyType: "Tipu di propiedade",
+        price: "Prizu (€)",
+        surface: "Área (m²)",
+        types: {
+          sale: "Venda",
+          apartment: "Apartamentu",
+          house: "Kaza / Vila",
+          land: "Terrenu",
+          commercial: "Espasu komérsial"
+        }
+      },
+      location: {
+        title: "Lokalizason",
+        island: "Ilha",
+        city: "Sidadi / Bairru",
+        cityPlaceholder: "Ex: Santa Maria",
+        address: "Morada izatu (skundidu)",
+        addressPlaceholder: "Rua, númeru...",
+      },
+      details: {
+        title: "Detalhis & Komodidadis",
+        bedrooms: "Kwartus",
+        bathrooms: "Kaza banhu",
+        amenities: "Komodidadis",
+        description: "Diskrison",
+        descriptionPlaceholder: "Diskrévi bu propiedade ku detalhi...",
+        list: {
+          pool: "Pisina",
+          garden: "Jardim",
+          garage: "Garajen",
+          seaview: "Vista Mar",
+          ac: "Ar Kondisonadu",
+          furnished: "Mobiladu",
+          elevator: "Elevador",
+          security: "Siguransa"
+        }
+      },
+      media: {
+        title: "Fotu & Dokumentu",
+        dragDrop: "Kleka ô rasta bu fotu li",
+        format: "JPG, PNG ti 5MB",
+        documents: "Dokumentu Legal (Opsional)",
+        docTypes: "Planta, diagnóstiku, etc.",
+        add: "Adisiona"
+      },
+      draft: "Guarda komu rascunhu"
     },
     home: {
       hero: {

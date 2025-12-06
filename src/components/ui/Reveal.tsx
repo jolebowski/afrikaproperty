@@ -50,6 +50,7 @@ export const Reveal = ({
         variants={variants}
         initial="hidden"
         animate={mainControls}
+        className="h-full"
       >
         {children}
       </motion.div>

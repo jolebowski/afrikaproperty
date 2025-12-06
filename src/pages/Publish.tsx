@@ -21,6 +21,8 @@ export function Publish() {
 
       <PromoterProcess />
 
+
+
       <PromoterPricing />
 
       <PromoterSuccessStories />
