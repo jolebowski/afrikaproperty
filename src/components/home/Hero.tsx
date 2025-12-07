@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
 import { useTranslation } from "../../i18n/I18nProvider";
 import { Button } from "../ui/Button";
 import { Reveal } from "../ui/Reveal";
@@ -40,50 +40,59 @@ export function Hero() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.6} width="100%">
+        <Reveal delay={0.6} width="100%">
             {/* Search Bar */}
-            <div className="bg-white p-2 rounded-3xl md:rounded-full shadow-2xl max-w-3xl mx-auto flex flex-col md:flex-row gap-2">
-              <div className="flex-1 px-6 py-3 border-b md:border-b-0 md:border-r border-gray-100">
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 text-left">
+            <div className="bg-white p-1 rounded-3xl md:rounded-full shadow-2xl max-w-3xl mx-auto flex flex-col md:flex-row gap-0.5">
+              <div className="flex-1 px-4 py-1.5 border-b md:border-b-0 md:border-r border-gray-100 relative">
+                <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-0.5 text-left">
                   {t("home.hero.locationLabel", { fallback: "Localisation" })}
                 </label>
-                <select className="w-full outline-none text-gray-900 font-medium bg-transparent cursor-pointer appearance-none">
-                  <option value="">{t("home.hero.locationPlaceholder", { fallback: "Toutes les îles" })}</option>
-                  <option value="sal">{t("home.hero.islands.sal", { fallback: "Sal" })}</option>
-                  <option value="boaVista">{t("home.hero.islands.boaVista", { fallback: "Boa Vista" })}</option>
-                  <option value="santiago">{t("home.hero.islands.santiago", { fallback: "Santiago" })}</option>
-                  <option value="saoVicente">{t("home.hero.islands.saoVicente", { fallback: "São Vicente" })}</option>
-                  <option value="santoAntao">{t("home.hero.islands.santoAntao", { fallback: "Santo Antão" })}</option>
-                  <option value="maio">{t("home.hero.islands.maio", { fallback: "Maio" })}</option>
-                  <option value="fogo">{t("home.hero.islands.fogo", { fallback: "Fogo" })}</option>
-                  <option value="saoNicolau">{t("home.hero.islands.saoNicolau", { fallback: "São Nicolau" })}</option>
-                  <option value="brava">{t("home.hero.islands.brava", { fallback: "Brava" })}</option>
-                </select>
+                <div className="relative">
+                  <select className="w-full outline-none text-sm text-gray-900 font-medium bg-transparent cursor-pointer appearance-none pr-6 truncate">
+                    <option value="">{t("home.hero.locationPlaceholder", { fallback: "Toutes les îles" })}</option>
+                    <option value="sal">{t("home.hero.islands.sal", { fallback: "Sal" })}</option>
+                    <option value="boaVista">{t("home.hero.islands.boaVista", { fallback: "Boa Vista" })}</option>
+                    <option value="santiago">{t("home.hero.islands.santiago", { fallback: "Santiago" })}</option>
+                    <option value="saoVicente">{t("home.hero.islands.saoVicente", { fallback: "São Vicente" })}</option>
+                    <option value="santoAntao">{t("home.hero.islands.santoAntao", { fallback: "Santo Antão" })}</option>
+                    <option value="maio">{t("home.hero.islands.maio", { fallback: "Maio" })}</option>
+                    <option value="fogo">{t("home.hero.islands.fogo", { fallback: "Fogo" })}</option>
+                    <option value="saoNicolau">{t("home.hero.islands.saoNicolau", { fallback: "São Nicolau" })}</option>
+                    <option value="brava">{t("home.hero.islands.brava", { fallback: "Brava" })}</option>
+                  </select>
+                  <ChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+                </div>
               </div>
-              <div className="flex-1 px-6 py-3 border-b md:border-b-0 md:border-r border-gray-100">
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 text-left">
+              <div className="flex-1 px-4 py-1.5 border-b md:border-b-0 md:border-r border-gray-100 relative">
+                <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-0.5 text-left">
                   {t("home.hero.typeLabel", { fallback: "Type de bien" })}
                 </label>
-                <select className="w-full outline-none text-gray-900 font-medium bg-transparent cursor-pointer appearance-none">
-                  <option>{t("home.hero.typeAny", { fallback: "Tous types" })}</option>
-                  <option>{t("home.hero.typeVilla", { fallback: "Villa" })}</option>
-                  <option>{t("home.hero.typeApartment", { fallback: "Appartement" })}</option>
-                  <option>{t("home.hero.typeLand", { fallback: "Terrain" })}</option>
-                </select>
+                <div className="relative">
+                  <select className="w-full outline-none text-sm text-gray-900 font-medium bg-transparent cursor-pointer appearance-none pr-6 truncate">
+                    <option>{t("home.hero.typeAny", { fallback: "Tous types" })}</option>
+                    <option>{t("home.hero.typeVilla", { fallback: "Villa" })}</option>
+                    <option>{t("home.hero.typeApartment", { fallback: "Appartement" })}</option>
+                    <option>{t("home.hero.typeLand", { fallback: "Terrain" })}</option>
+                  </select>
+                  <ChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+                </div>
               </div>
-              <div className="flex-1 px-6 py-3">
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 text-left">
+              <div className="flex-1 px-4 py-1.5 relative">
+                <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-0.5 text-left">
                   {t("home.hero.budgetLabel", { fallback: "Budget" })}
                 </label>
-                <select className="w-full outline-none text-gray-900 font-medium bg-transparent cursor-pointer appearance-none">
-                  <option>{t("home.hero.budgetAny", { fallback: "Tout budget" })}</option>
-                  <option>{t("home.hero.budget1", { fallback: "100k - 250k €" })}</option>
-                  <option>{t("home.hero.budget2", { fallback: "250k - 500k €" })}</option>
-                  <option>{t("home.hero.budget3", { fallback: "500k € +" })}</option>
-                </select>
+                <div className="relative">
+                  <select className="w-full outline-none text-sm text-gray-900 font-medium bg-transparent cursor-pointer appearance-none pr-6 truncate">
+                    <option>{t("home.hero.budgetAny", { fallback: "Tout budget" })}</option>
+                    <option>{t("home.hero.budget1", { fallback: "100k - 250k €" })}</option>
+                    <option>{t("home.hero.budget2", { fallback: "250k - 500k €" })}</option>
+                    <option>{t("home.hero.budget3", { fallback: "500k € +" })}</option>
+                  </select>
+                  <ChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+                </div>
               </div>
-              <Button size="lg" className="rounded-full px-8 h-auto py-3 md:py-0">
-                <Search className="h-5 w-5 md:mr-2" />
+              <Button size="lg" className="rounded-full px-5 h-auto py-2 md:py-0 text-sm whitespace-nowrap">
+                <Search className="h-3.5 w-3.5 md:mr-1.5" />
                 <span className="hidden md:inline">
                   {t("home.hero.search", { fallback: "Rechercher" })}
                 </span>
