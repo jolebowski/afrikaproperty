@@ -213,5 +213,97 @@ export const DESTINATIONS: Destination[] = [
         },
       },
     }
+  },
+  {
+    id: "5",
+    name: "Santo Antão",
+    slug: "santo-antao",
+    description: "L'île la plus spectaculaire pour les randonneurs, avec ses paysages montagneux vertigineux, ses vallées profondes et ses cultures en terrasses. Un paradis pour les amateurs de nature sauvage.",
+    image: "https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?q=80&w=2053&auto=format&fit=crop",
+    propertyCount: 12,
+    highlights: ["Vallée de Paul", "Ponta do Sol", "Sentiers de randonnée spectaculaires"],
+    practicalInfo: {
+      airport: "Via São Vicente (ferry depuis Mindelo)",
+      flightDuration: "Vol jusqu'à São Vicente puis ferry (1h)",
+      bestSeason: "Novembre à Mai"
+    },
+    translations: {
+      en: {
+        description:
+          "The most spectacular island for hikers, with vertiginous mountain landscapes, deep valleys and terraced cultures. A paradise for wild nature lovers.",
+        highlights: ["Paul Valley", "Ponta do Sol", "Spectacular hiking trails"],
+        practicalInfo: {
+          airport: "Via São Vicente (ferry from Mindelo)",
+          flightDuration: "Flight to São Vicente then ferry (1h)",
+          bestSeason: "November to May",
+        },
+      },
+      pt: {
+        description:
+          "A ilha mais espetacular para caminhantes, com paisagens montanhosas vertiginosas, vales profundos e culturas em terraços. Um paraíso para amantes da natureza selvagem.",
+        highlights: ["Vale do Paul", "Ponta do Sol", "Trilhos de caminhada espetaculares"],
+        practicalInfo: {
+          airport: "Via São Vicente (ferry desde Mindelo)",
+          flightDuration: "Voo até São Vicente depois ferry (1h)",
+          bestSeason: "Novembro a Maio",
+        },
+      },
+      cv: {
+        description:
+          "Ilha más spektakular pa kaminhadóra, ku montanha altu, vale fundu i kultura na terása. Paraizu pa amanti di naturéza bravu.",
+        highlights: ["Vale di Paul", "Ponta do Sol", "Kaminha spektakular"],
+        practicalInfo: {
+          airport: "Via São Vicente (ferry desde Mindelu)",
+          flightDuration: "Vôa té São Vicente dipós ferry (1 ora)",
+          bestSeason: "Novémbru té Maiu",
+        },
+      },
+    }
+  },
+  {
+    id: "6",
+    name: "Fogo",
+    slug: "fogo",
+    description: "L'île du volcan actif, offrant des paysages lunaires uniques et une viticulture d'altitude remarquable. Une destination fascinante où le feu rencontre la mer.",
+    image: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=2070&auto=format&fit=crop",
+    propertyCount: 8,
+    highlights: ["Volcan Pico do Fogo", "Vins de Chã das Caldeiras", "Architecture coloniale de São Filipe"],
+    practicalInfo: {
+      airport: "Aéroport de São Filipe (SFL)",
+      flightDuration: "Via Praia (Santiago)",
+      bestSeason: "Novembre à Mai pour l'ascension du volcan"
+    },
+    translations: {
+      en: {
+        description:
+          "The island of the active volcano, offering unique lunar landscapes and remarkable high-altitude viticulture. A fascinating destination where fire meets the sea.",
+        highlights: ["Pico do Fogo volcano", "Chã das Caldeiras wines", "Colonial architecture of São Filipe"],
+        practicalInfo: {
+          airport: "São Filipe Airport (SFL)",
+          flightDuration: "Via Praia (Santiago)",
+          bestSeason: "November to May for volcano ascent",
+        },
+      },
+      pt: {
+        description:
+          "A ilha do vulcão ativo, oferecendo paisagens lunares únicas e viticultura de altitude notável. Um destino fascinante onde o fogo encontra o mar.",
+        highlights: ["Vulcão Pico do Fogo", "Vinhos de Chã das Caldeiras", "Arquitetura colonial de São Filipe"],
+        practicalInfo: {
+          airport: "Aeroporto de São Filipe (SFL)",
+          flightDuration: "Via Praia (Santiago)",
+          bestSeason: "Novembro a Maio para subida do vulcão",
+        },
+      },
+      cv: {
+        description:
+          "Ilha di vulkon ativu, ku paisajen lunar úniku i vinha na altitude. Destinu fascinanti undi fogu ta atxa ku mar.",
+        highlights: ["Vulkon Pico do Fogo", "Vinhu di Chã das Caldeiras", "Arkitetura kolonial di São Filipe"],
+        practicalInfo: {
+          airport: "Aerpórtu di São Filipe (SFL)",
+          flightDuration: "Via Praia (Santiago)",
+          bestSeason: "Novémbru té Maiu pa subi vulkon",
+        },
+      },
+    }
   }
 ];

@@ -271,6 +271,8 @@ export const translations: Record<Language, TranslationDict> = {
           boavista: { vibe: "Dunes & Nature", price: "1 900 €/m²" },
           santiago: { vibe: "Capitale & Business", price: "1 500 €/m²" },
           saovicente: { vibe: "Culture & Musique", price: "1 700 €/m²" },
+          santoantao: { vibe: "Montagnes & Randonnée", price: "1 400 €/m²" },
+          fogo: { vibe: "Volcan & Vins", price: "1 300 €/m²" },
         },
       },
       destinations: {
@@ -929,6 +931,8 @@ export const translations: Record<Language, TranslationDict> = {
           boavista: { vibe: "Dunes & Nature", price: "€1,900/sqm" },
           santiago: { vibe: "Capital & Business", price: "€1,500/sqm" },
           saovicente: { vibe: "Culture & Music", price: "€1,700/sqm" },
+          santoantao: { vibe: "Mountains & Hiking", price: "€1,400/sqm" },
+          fogo: { vibe: "Volcano & Wine", price: "€1,300/sqm" },
         },
       },
       destinations: {
@@ -1485,6 +1489,8 @@ export const translations: Record<Language, TranslationDict> = {
           boavista: { vibe: "Dunas e Natureza", price: "1 900 €/m²" },
           santiago: { vibe: "Capital e Negócios", price: "1 500 €/m²" },
           saovicente: { vibe: "Cultura e Música", price: "1 700 €/m²" },
+          santoantao: { vibe: "Montanhas e Caminhadas", price: "1 400 €/m²" },
+          fogo: { vibe: "Vulcão e Vinhos", price: "1 300 €/m²" },
         },
       },
       destinations: {
@@ -1990,6 +1996,8 @@ export const translations: Record<Language, TranslationDict> = {
           boavista: { vibe: "Dunas & Naturéza", price: "1 900 €/m²" },
           santiago: { vibe: "Kapital & Biznes", price: "1 500 €/m²" },
           saovicente: { vibe: "Kultura & Músika", price: "1 700 €/m²" },
+          santoantao: { vibe: "Montanha & Kaminhada", price: "1 400 €/m²" },
+          fogo: { vibe: "Vulkon & Vinhu", price: "1 300 €/m²" },
         },
       },
       destinations: {
