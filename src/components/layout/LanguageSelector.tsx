@@ -1,4 +1,4 @@
-import { Check, Globe } from "lucide-react";
+import { Check } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "../../i18n/I18nProvider";
 import { cn } from "../../lib/utils";
@@ -38,7 +38,7 @@ export function LanguageSelector({ tone = "light", onChange, className }: Langua
         type="button"
         onClick={() => setOpen((prev) => !prev)}
         className={cn(
-          "p-2 rounded-full transition-colors flex items-center gap-1 border border-transparent",
+          "p-2 rounded-full transition-colors flex items-center gap-2 border border-transparent",
           isDark
             ? "text-white hover:bg-white/10"
             : "text-text-secondary hover:bg-gray-100 border-gray-200"
@@ -46,7 +46,7 @@ export function LanguageSelector({ tone = "light", onChange, className }: Langua
         aria-haspopup="listbox"
         aria-expanded={open}
       >
-        <Globe className="h-5 w-5" />
+        <span className="text-lg leading-none">{languages[language].flag}</span>
         <span className="text-xs font-medium uppercase">{languages[language].shortLabel}</span>
       </button>
 
@@ -68,7 +68,10 @@ export function LanguageSelector({ tone = "light", onChange, className }: Langua
               role="option"
               aria-selected={language === code}
             >
-              <span>{languages[code].label}</span>
+              <div className="flex items-center gap-2">
+                <span className="text-lg leading-none">{languages[code].flag}</span>
+                <span>{languages[code].label}</span>
+              </div>
               {language === code && <Check className="h-4 w-4 text-primary" />}
             </button>
           ))}

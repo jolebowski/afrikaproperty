@@ -2,12 +2,12 @@ export type Language = "fr" | "en" | "pt" | "cv";
 
 export const LANGUAGES: Record<
   Language,
-  { label: string; locale: string; shortLabel: string }
+  { label: string; locale: string; shortLabel: string; flag: string }
 > = {
-  fr: { label: "Français", locale: "fr-FR", shortLabel: "FR" },
-  en: { label: "English", locale: "en-US", shortLabel: "EN" },
-  pt: { label: "Português", locale: "pt-PT", shortLabel: "PT" },
-  cv: { label: "Kabuverdianu", locale: "kea-CV", shortLabel: "CV" },
+  fr: { label: "Français", locale: "fr-FR", shortLabel: "FR", flag: "🇫🇷" },
+  en: { label: "English", locale: "en-US", shortLabel: "EN", flag: "🇬🇧" },
+  pt: { label: "Português", locale: "pt-PT", shortLabel: "PT", flag: "🇵🇹" },
+  cv: { label: "Kabuverdianu", locale: "kea-CV", shortLabel: "CV", flag: "🇨🇻" },
 };
 
 type TranslationValue =

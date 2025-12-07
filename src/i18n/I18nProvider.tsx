@@ -16,7 +16,7 @@ type I18nContextValue = {
 };
 
 const STORAGE_KEY = "afrika-language";
-const DEFAULT_LANGUAGE: Language = "fr";
+const DEFAULT_LANGUAGE: Language = "pt"; // Portugais par défaut pour le marché Cap-Vert
 
 const I18nContext = createContext<I18nContextValue | undefined>(undefined);
 
@@ -56,11 +56,22 @@ const detectInitialLanguage = (): Language => {
   const browserLanguages = window.navigator?.languages?.map((l) => l.toLowerCase()) ?? [];
   const candidates = [navigatorLang, ...browserLanguages].filter(Boolean) as string[];
 
+  // Ordre de priorité optimisé pour le marché Cap-Vert
   for (const candidate of candidates) {
+    // Capverdien - toutes les variantes possibles
+    if (
+      candidate.startsWith("kea") ||
+      candidate.includes("cv") ||
+      candidate.includes("cape") ||
+      candidate.includes("cabo")
+    ) return "cv";
+
+    // Portugais - langue largement parlée au Cap-Vert
+    if (candidate.startsWith("pt")) return "pt";
+
+    // Français et Anglais pour les marchés internationaux
     if (candidate.startsWith("fr")) return "fr";
     if (candidate.startsWith("en")) return "en";
-    if (candidate.startsWith("pt")) return "pt";
-    if (candidate.startsWith("kea") || candidate.includes("cv")) return "cv";
   }
 
   return DEFAULT_LANGUAGE;
