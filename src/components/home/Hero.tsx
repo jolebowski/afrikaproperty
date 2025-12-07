@@ -47,11 +47,18 @@ export function Hero() {
                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 text-left">
                   {t("home.hero.locationLabel", { fallback: "Localisation" })}
                 </label>
-                <input 
-                  type="text" 
-                  placeholder={t("home.hero.locationPlaceholder", { fallback: "Toutes les îles" })}
-                  className="w-full outline-none text-gray-900 placeholder-gray-400 font-medium bg-transparent"
-                />
+                <select className="w-full outline-none text-gray-900 font-medium bg-transparent cursor-pointer appearance-none">
+                  <option value="">{t("home.hero.locationPlaceholder", { fallback: "Toutes les îles" })}</option>
+                  <option value="sal">{t("home.hero.islands.sal", { fallback: "Sal" })}</option>
+                  <option value="boaVista">{t("home.hero.islands.boaVista", { fallback: "Boa Vista" })}</option>
+                  <option value="santiago">{t("home.hero.islands.santiago", { fallback: "Santiago" })}</option>
+                  <option value="saoVicente">{t("home.hero.islands.saoVicente", { fallback: "São Vicente" })}</option>
+                  <option value="santoAntao">{t("home.hero.islands.santoAntao", { fallback: "Santo Antão" })}</option>
+                  <option value="maio">{t("home.hero.islands.maio", { fallback: "Maio" })}</option>
+                  <option value="fogo">{t("home.hero.islands.fogo", { fallback: "Fogo" })}</option>
+                  <option value="saoNicolau">{t("home.hero.islands.saoNicolau", { fallback: "São Nicolau" })}</option>
+                  <option value="brava">{t("home.hero.islands.brava", { fallback: "Brava" })}</option>
+                </select>
               </div>
               <div className="flex-1 px-6 py-3 border-b md:border-b-0 md:border-r border-gray-100">
                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 text-left">
