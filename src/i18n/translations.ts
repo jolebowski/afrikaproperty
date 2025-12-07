@@ -55,6 +55,7 @@ export const translations: Record<Language, TranslationDict> = {
       blog: "Blog",
       favorites: "Favoris",
       profile: "Mon Profil",
+      services: "Services",
       about: "À propos",
       contact: "Contact",
       promoterSpace: "Espace Pro",
@@ -542,6 +543,103 @@ export const translations: Record<Language, TranslationDict> = {
       completedSales: "ventes réalisées",
       rate: "Taux",
     },
+    services: {
+      title: "Services Professionnels",
+      subtitle: "Des experts à vos côtés pour réussir votre investissement",
+      hero: {
+        title: "Services Professionnels",
+        subtitle: "Banques, avocats et conseillers : les meilleurs experts pour réussir votre investissement au Cap-Vert."
+      },
+      section: {
+        title: "Des experts pour sécuriser votre projet",
+        subtitle: "Nous avons sélectionné les meilleurs partenaires bancaires, juridiques et conseils pour vous accompagner."
+      },
+      types: {
+        bank: "Banques Partenaires",
+        consultant: "Cabinet de Conseil",
+        lawyer: "Avocats Spécialisés"
+      },
+      filters: {
+        all: "Tous",
+        bank: "Banques",
+        consultant: "Conseil",
+        lawyer: "Avocats"
+      },
+      descriptions: {
+        bank: "Financements adaptés aux non-résidents avec taux préférentiels",
+        consultant: "Accompagnement personnalisé pour la diaspora cap-verdienne",
+        lawyer: "Sécurité juridique et expertise en droit immobilier local"
+      },
+      commission: {
+        rate: "Commission",
+        earned: "Commissions gagnées",
+        pending: "En attente",
+        paid: "Payées",
+        noFees: "Sans frais pour vous",
+        explanation: "Nos partenaires nous rémunèrent directement en tant qu'apporteur d'affaires. Vous bénéficiez de tarifs négociés."
+      },
+      lead: {
+        form: {
+          title: "Demander un devis gratuit",
+          name: "Votre nom",
+          email: "Email",
+          phone: "Téléphone",
+          amount: "Montant souhaité",
+          country: "Pays de résidence",
+          message: "Message (optionnel)",
+          submit: "Envoyer la demande",
+          consent: "J'accepte que mes données soient transmises au partenaire"
+        },
+        tracking: {
+          code: "Code de suivi",
+          status: "Statut",
+          created: "Créé le",
+          expectedCommission: "Commission estimée"
+        }
+      },
+      stats: {
+        totalPartners: "{count} partenaires de confiance",
+        satisfiedClients: "{count} clients satisfaits",
+        partners: "{count} partenaires certifiés",
+        clients: "Plus de 500 clients accompagnés",
+        savedMoney: "{amount}€ économisés pour nos clients"
+      },
+      cta: {
+        viewPartners: "Voir les partenaires",
+        requestQuote: "Demander un devis",
+        becomePartner: "Devenir partenaire",
+        viewDetails: "Voir détails",
+        contactService: "Contacter",
+        viewAll: "Voir tous les experts",
+        start: "Commencer mes démarches",
+        partner: {
+          title: "Vous êtes un professionnel ?",
+          desc: "Rejoignez notre réseau de partenaires certifiés et développez votre clientèle internationale."
+        }
+      },
+      howItWorks: {
+        title: "Comment ça marche ?",
+      },
+      list: {
+        results: "partenaires disponibles"
+      }
+    },
+    leads: {
+      services: {
+        title: "Suivi des Apporteurs"
+      },
+      search: {
+        placeholder: "Rechercher par nom ou code..."
+      }
+    },
+    dashboard: {
+      services: {
+        title: "Services & Apporteur",
+        subtitle: "Suivez vos commissions partenaires",
+        activeLeads: "Leads Actifs",
+        pendingCommissions: "Commissions à venir"
+      }
+    },
   },
   en: {
     common: {
@@ -578,6 +676,7 @@ export const translations: Record<Language, TranslationDict> = {
       blog: "Blog",
       favorites: "Favorites",
       profile: "My Profile",
+      services: "Services",
       about: "About",
       contact: "Contact",
       promoterSpace: "Pro Area",
@@ -1066,7 +1165,7 @@ export const translations: Record<Language, TranslationDict> = {
       rate: "Rate",
     },
   },
-  pt: {
+  pt: { // Inserting into PT
     common: {
       brand: "Afrika Property",
       viewAll: "Ver tudo",
@@ -1087,6 +1186,7 @@ export const translations: Record<Language, TranslationDict> = {
       buy: "Comprar",
       invest: "Investir",
       promoters: "Promotores",
+      services: "Serviços",
       destinations: "Destinos",
       blog: "Blog",
       favorites: "Favoritos",
@@ -1560,6 +1660,7 @@ export const translations: Record<Language, TranslationDict> = {
       buy: "Kompra",
       invest: "Invisti",
       promoters: "Promotóris",
+      services: "Servisus",
       destinations: "Destinu",
       blog: "Blog",
       favorites: "Favoritu",

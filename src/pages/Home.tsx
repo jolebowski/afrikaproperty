@@ -4,6 +4,7 @@ import { FeaturedProperties } from "../components/home/FeaturedProperties";
 import { Hero } from "../components/home/Hero";
 import { InteractiveMap } from "../components/home/InteractiveMap";
 import { InvestSection } from "../components/home/InvestSection";
+import { ProfessionalServicesSection } from "../components/home/ProfessionalServicesSection";
 import { ProjectContactBanner } from "../components/home/ProjectContactBanner";
 import { PromoterCTA } from "../components/home/PromoterCTA";
 import { VideoPresentation } from "../components/home/VideoPresentation";
@@ -14,6 +15,7 @@ export function Home() {
       <Hero />
       <FeaturedProperties />
       <PromoterCTA />
+      <ProfessionalServicesSection />
       <InvestSection />
       <VideoPresentation />
       <InteractiveMap />

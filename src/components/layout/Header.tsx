@@ -21,6 +21,7 @@ export function Header() {
     { label: t("nav.agencies", { fallback: "Agences" }), path: "/agencies" },
     { label: t("nav.invest", { fallback: "Investir" }), path: "/invest" },
     { label: t("nav.promoters", { fallback: "Promoteurs" }), path: "/publish" },
+    { label: t("nav.services", { fallback: "Services" }), path: "/services" },
     { label: t("nav.destinations", { fallback: "Destinations" }), path: "/destinations" },
     { label: t("nav.blog", { fallback: "Blog" }), path: "/blog" },
   ];

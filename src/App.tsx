@@ -15,17 +15,19 @@ import { Home } from "./pages/Home";
 import { Invest } from "./pages/Invest";
 import { Legal } from "./pages/Legal";
 import { NotFound } from "./pages/NotFound";
+import ProfessionalServices from "./pages/ProfessionalServices";
 import { PropertiesList } from "./pages/PropertiesList";
 import { PropertyDetail } from "./pages/PropertyDetail";
 import { Publish } from "./pages/Publish";
+import Commissions from "./pages/promoter/Commissions";
 import { CreateListing } from "./pages/promoter/CreateListing";
 import { Dashboard as PromoterDashboard } from "./pages/promoter/Dashboard";
 import { EditListing } from "./pages/promoter/EditListing";
 import { PromoterLogin } from "./pages/promoter/Login";
 import { PromoterLeads } from "./pages/promoter/PromoterLeads";
 import { PromoterProfile } from "./pages/promoter/PromoterProfile";
+import ServiceLeads from "./pages/promoter/ServiceLeads";
 import { PromoterSignup } from "./pages/promoter/Signup";
-import Commissions from "./pages/promoter/Commissions";
 
 function App() {
   return (
@@ -43,6 +45,7 @@ function App() {
               <Route path="/destinations/:slug" element={<DestinationDetail />} />
               <Route path="/agencies" element={<Agencies />} />
               <Route path="/agency/:slug" element={<AgencyProfile />} />
+              <Route path="/services" element={<ProfessionalServices />} />
               
               {/* Promoter Routes */}
               <Route path="/promoter/login" element={<PromoterLogin />} />
@@ -51,6 +54,7 @@ function App() {
               <Route path="/promoter/listings/create" element={<CreateListing />} />
               <Route path="/promoter/listings/edit/:id" element={<EditListing />} />
               <Route path="/promoter/leads" element={<PromoterLeads />} />
+              <Route path="/promoter/leads/services" element={<ServiceLeads />} />
               <Route path="/promoter/commissions" element={<Commissions />} />
               <Route path="/promoter/profile" element={<PromoterProfile />} />
               
