@@ -15,29 +15,29 @@ export function PropertyInvestmentProjection({ price, rentPrice, currency = "EUR
   const { t, formatCurrency } = useTranslation();
 
   return (
-    <div className="bg-secondary text-white rounded-xl p-6 shadow-lg">
+    <div className="bg-gray-900 text-white rounded-xl p-6 shadow-lg border border-gray-800">
       <div className="flex items-center gap-3 mb-6">
         <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
           <TrendingUp className="h-5 w-5" />
         </div>
-        <h3 className="font-serif text-xl font-bold">
+        <h3 className="font-serif text-xl font-bold text-white">
           {t("property.investment.title", { fallback: "Projection d'Investissement" })}
         </h3>
       </div>
 
       <div className="space-y-6">
-        <div className="flex justify-between items-end border-b border-white/10 pb-4">
+        <div className="flex justify-between items-end border-b border-gray-700 pb-4">
           <span className="text-gray-400">
             {t("property.investment.purchasePrice", { fallback: "Prix d'acquisition" })}
           </span>
-          <span className="text-xl font-bold">{formatCurrency(price, currency)}</span>
+          <span className="text-xl font-bold text-white">{formatCurrency(price, currency)}</span>
         </div>
 
-        <div className="flex justify-between items-end border-b border-white/10 pb-4">
+        <div className="flex justify-between items-end border-b border-gray-700 pb-4">
           <span className="text-gray-400">
             {t("property.investment.monthlyRent", { fallback: "Loyer mensuel estimé" })}
           </span>
-          <span className="text-xl font-bold">{formatCurrency(estimatedRent, currency)}</span>
+          <span className="text-xl font-bold text-white">{formatCurrency(estimatedRent, currency)}</span>
         </div>
 
         <div className="flex justify-between items-end">
@@ -48,7 +48,7 @@ export function PropertyInvestmentProjection({ price, rentPrice, currency = "EUR
         </div>
       </div>
 
-      <div className="mt-6 pt-4 border-t border-white/10 flex gap-2 text-xs text-gray-500">
+      <div className="mt-6 pt-4 border-t border-gray-700 flex gap-2 text-xs text-gray-500">
         <Info className="h-4 w-4 flex-shrink-0" />
         <p>
           {t("property.investment.disclaimer", {

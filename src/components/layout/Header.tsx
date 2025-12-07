@@ -18,6 +18,7 @@ export function Header() {
 
   const navLinks = [
     { label: t("nav.buy", { fallback: "Acheter" }), path: "/properties" },
+    { label: t("nav.agencies", { fallback: "Agences" }), path: "/agencies" },
     { label: t("nav.invest", { fallback: "Investir" }), path: "/invest" },
     { label: t("nav.promoters", { fallback: "Promoteurs" }), path: "/publish" },
     { label: t("nav.destinations", { fallback: "Destinations" }), path: "/destinations" },
@@ -62,13 +63,18 @@ export function Header() {
                 key={link.path}
                 to={link.path}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  isScrolled || !isHomePage
-                    ? "text-text-secondary"
-                    : "text-white/90 hover:text-white"
+                  "text-sm font-medium transition-colors hover:text-primary relative",
+                  location.pathname === link.path 
+                    ? "text-primary font-semibold"
+                    : isScrolled || !isHomePage
+                      ? "text-text-secondary"
+                      : "text-white/90 hover:text-white"
                 )}
               >
                 {link.label}
+                {location.pathname === link.path && (
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary rounded-full" />
+                )}
               </Link>
             ))}
           </nav>
@@ -106,7 +112,7 @@ export function Header() {
                   !isScrolled && isHomePage && "bg-white text-primary hover:bg-white/90"
                 )}
               >
-                {t("nav.promoterSpace", { fallback: "Espace Promoteur" })}
+                {t("nav.promoterSpace", { fallback: "Espace Pro" })}
               </Button>
             </Link>
           </div>

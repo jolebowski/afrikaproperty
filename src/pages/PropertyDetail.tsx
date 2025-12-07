@@ -1,13 +1,15 @@
 import { ArrowLeft, Bath, Bed, MapPin, Maximize, Share2 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-import { useTranslation } from "../i18n/I18nProvider";
+import { AgencyBadge } from "../components/agency/AgencyBadge";
 import { ContactForm } from "../components/property/ContactForm";
 import { PropertyAmenities } from "../components/property/PropertyAmenities";
 import { PropertyGallery } from "../components/property/PropertyGallery";
 import { PropertyInvestmentProjection } from "../components/property/PropertyInvestmentProjection";
 import { Badge } from "../components/ui/Badge";
 import { Button } from "../components/ui/Button";
+import { AGENCIES } from "../data/agencies";
 import { PROPERTIES } from "../data/properties";
+import { useTranslation } from "../i18n/I18nProvider";
 
 export function PropertyDetail() {
   const { id } = useParams();
@@ -150,6 +152,17 @@ export function PropertyDetail() {
 
           {/* Sidebar */}
           <div className="space-y-8">
+            {/* Agency Info */}
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+               <h3 className="text-sm font-bold text-gray-400 uppercase mb-4 tracking-wider">
+                  {t('property.detail.presentedBy', { fallback: 'Proposé par' })}
+               </h3>
+               {property.agencyId && (
+                  <AgencyBadge 
+                    agency={AGENCIES.find(a => a.id === property.agencyId)} 
+                  />
+               )}
+            </div>
             <ContactForm />
             <PropertyInvestmentProjection price={property.price} currency={property.currency} />
           </div>

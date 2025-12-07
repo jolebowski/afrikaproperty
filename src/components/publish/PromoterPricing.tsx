@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "../ui/Button";
 import { Reveal } from "../ui/Reveal";
 
@@ -96,12 +97,14 @@ export function PromoterPricing() {
                   ))}
                 </ul>
 
-                <Button 
-                  variant={plan.popular ? "primary" : "outline"} 
-                  className={`w-full ${plan.popular ? 'shadow-lg shadow-primary/25' : ''}`}
-                >
-                  {plan.cta}
-                </Button>
+                <Link to="/promoter/signup" className="w-full block">
+                  <Button 
+                    variant={plan.popular ? "primary" : "outline"} 
+                    className={`w-full ${plan.popular ? 'shadow-lg shadow-primary/25' : ''}`}
+                  >
+                    {plan.cta}
+                  </Button>
+                </Link>
               </div>
             </Reveal>
           ))}

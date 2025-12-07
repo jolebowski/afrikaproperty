@@ -17,7 +17,8 @@ export const PROPERTIES: Property[] = [
       "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=2070&auto=format&fit=crop"
     ],
     isExclusive: true,
-    isNew: true
+    isNew: true,
+    agencyId: "ag_1"
   },
   {
     id: "2",
@@ -33,7 +34,8 @@ export const PROPERTIES: Property[] = [
     images: [
       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop"
     ],
-    isPremium: true
+    isPremium: true,
+    agencyId: "ag_2"
   },
   {
     id: "3",
@@ -48,7 +50,8 @@ export const PROPERTIES: Property[] = [
     area: 120,
     images: [
       "https://images.unsplash.com/photo-1600596542815-2495db9dc2c3?q=80&w=2070&auto=format&fit=crop"
-    ]
+    ],
+    agencyId: "ag_3"
   },
   {
     id: "4",
@@ -63,7 +66,8 @@ export const PROPERTIES: Property[] = [
     area: 85,
     images: [
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=2070&auto=format&fit=crop"
-    ]
+    ],
+    agencyId: "ag_4"
   },
   {
     id: "5",
@@ -79,7 +83,8 @@ export const PROPERTIES: Property[] = [
     images: [
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop"
     ],
-    isNew: true
+    isNew: true,
+    agencyId: "ag_5"
   },
   {
     id: "6",
@@ -94,6 +99,9 @@ export const PROPERTIES: Property[] = [
     area: 110,
     images: [
       "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format&fit=crop"
-    ]
+    ],
+    agencyId: "ag_1"
   }
 ];
+
+export const initialProperties = PROPERTIES;

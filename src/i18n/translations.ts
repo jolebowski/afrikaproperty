@@ -47,7 +47,7 @@ export const translations: Record<Language, TranslationDict> = {
       profile: "Mon Profil",
       about: "À propos",
       contact: "Contact",
-      promoterSpace: "Espace Promoteur",
+      promoterSpace: "Espace Pro",
     },
     footer: {
       description:
@@ -520,7 +520,7 @@ export const translations: Record<Language, TranslationDict> = {
       profile: "My Profile",
       about: "About",
       contact: "Contact",
-      promoterSpace: "Developer Area",
+      promoterSpace: "Pro Area",
     },
     footer: {
       description:

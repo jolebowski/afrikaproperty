@@ -3,6 +3,8 @@ import { Footer } from "./components/layout/Footer";
 import { Header } from "./components/layout/Header";
 import { ToastProvider } from "./components/ui/Toast";
 import { About } from "./pages/About";
+import { Agencies } from "./pages/Agencies";
+import { AgencyProfile } from "./pages/AgencyProfile";
 import { Blog } from "./pages/Blog";
 import { BlogArticle } from "./pages/BlogArticle";
 import { Contact } from "./pages/Contact";
@@ -38,6 +40,8 @@ function App() {
               <Route path="/invest" element={<Invest />} />
               <Route path="/destinations" element={<Destinations />} />
               <Route path="/destinations/:slug" element={<DestinationDetail />} />
+              <Route path="/agencies" element={<Agencies />} />
+              <Route path="/agency/:slug" element={<AgencyProfile />} />
               
               {/* Promoter Routes */}
               <Route path="/promoter/login" element={<PromoterLogin />} />

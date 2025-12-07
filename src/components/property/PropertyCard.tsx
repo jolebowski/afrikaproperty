@@ -1,9 +1,11 @@
 import { Bath, Bed, ChevronLeft, ChevronRight, Heart, MapPin, Maximize } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AGENCIES } from "../../data/agencies";
 import { useTranslation } from "../../i18n/I18nProvider";
 import { cn } from "../../lib/utils";
 import type { Property } from "../../types";
+import { AgencyBadge } from "../agency/AgencyBadge";
 import { Badge } from "../ui/Badge";
 
 interface PropertyCardProps {
@@ -27,10 +29,9 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
   };
 
   return (
-    <Link
-      to={`/properties/${property.id}`}
+    <div
       className={cn(
-        "group block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100",
+        "group relative block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100",
         className
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -38,14 +39,16 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
     >
       {/* Image Container */}
       <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
-        <img
-          src={property.images[currentImageIndex]}
-          alt={property.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
+        <Link to={`/properties/${property.id}`} className="block h-full w-full">
+            <img
+            src={property.images[currentImageIndex]}
+            alt={property.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+        </Link>
         
         {/* Badges */}
-        <div className="absolute top-4 left-4 flex flex-col gap-2">
+        <div className="absolute top-4 left-4 flex flex-col gap-2 pointer-events-none">
           {property.isNew && (
             <Badge variant="default">
               {t("property.badges.new", { fallback: "Nouveau" })}
@@ -65,9 +68,10 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
 
         {/* Favorite Button */}
         <button
-          className="absolute top-4 right-4 p-2 rounded-full bg-white/80 hover:bg-white text-gray-600 hover:text-red-500 transition-colors backdrop-blur-sm"
+          className="absolute top-4 right-4 p-2 rounded-full bg-white/80 hover:bg-white text-gray-600 hover:text-red-500 transition-colors backdrop-blur-sm z-10"
           onClick={(e) => {
             e.preventDefault();
+            e.stopPropagation();
             // Handle favorite logic
           }}
         >
@@ -79,13 +83,13 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
           <>
             <button
               onClick={prevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-white/80 hover:bg-white text-gray-800 transition-colors backdrop-blur-sm"
+              className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-white/80 hover:bg-white text-gray-800 transition-colors backdrop-blur-sm z-10"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-white/80 hover:bg-white text-gray-800 transition-colors backdrop-blur-sm"
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-white/80 hover:bg-white text-gray-800 transition-colors backdrop-blur-sm z-10"
             >
               <ChevronRight className="h-4 w-4" />
             </button>
@@ -94,7 +98,7 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
 
         {/* Image Dots */}
         {property.images.length > 1 && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 pointer-events-none">
             {property.images.map((_, idx) => (
               <div
                 key={idx}
@@ -109,11 +113,13 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
       </div>
 
       {/* Content */}
-      <div className="p-5">
+      <div className="p-5 flex flex-col h-[200px]">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="font-serif text-lg font-semibold text-text-primary line-clamp-1 group-hover:text-primary transition-colors">
-            {property.title}
-          </h3>
+            <Link to={`/properties/${property.id}`} className="group-hover:text-primary transition-colors">
+                <h3 className="font-serif text-lg font-semibold text-text-primary line-clamp-1">
+                    {property.title}
+                </h3>
+            </Link>
           <p className="font-semibold text-primary whitespace-nowrap ml-4">
             {formatCurrency(property.price, property.currency)}
           </p>
@@ -124,23 +130,36 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
           <span className="line-clamp-1">{property.location}</span>
         </div>
 
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100 text-sm text-gray-600">
-          <div className="flex items-center gap-1">
-            <Bed className="h-4 w-4" />
-            <span>{property.bedrooms}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Bath className="h-4 w-4" />
-            <span>{property.bathrooms}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Maximize className="h-4 w-4" />
-            <span>
-              {property.area} {t("property.metrics.areaUnit", { fallback: "m²" })}
-            </span>
+        <div className="flex items-center justify-between pt-4 border-t border-gray-100 text-sm text-gray-600 mt-auto">
+          <div className="flex gap-4">
+            <div className="flex items-center gap-1">
+              <Bed className="h-4 w-4" />
+              <span>{property.bedrooms}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Bath className="h-4 w-4" />
+              <span>{property.bathrooms}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Maximize className="h-4 w-4" />
+              <span>
+                {property.area} {t("property.metrics.areaUnit", { fallback: "m²" })}
+              </span>
+            </div>
           </div>
         </div>
+        
+        {/* Agency Badge */}
+        {(property.agency || property.agencyId) && (
+           <div className="mt-4 pt-3 border-t border-gray-50">
+             <div className="relative z-10">
+                <AgencyBadge 
+                    agency={property.agency || AGENCIES.find(a => a.id === property.agencyId)} 
+                />
+             </div>
+           </div>
+        )}
       </div>
-    </Link>
+    </div>
   );
 }

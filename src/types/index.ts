@@ -13,6 +13,34 @@ export interface Property {
   isNew?: boolean;
   isExclusive?: boolean;
   isPremium?: boolean;
+  agencyId: string;
+  agency?: Agency;
+}
+
+export interface Agency {
+  id: string;
+  name: string;
+  type: 'agency' | 'promoter';
+  email: string;
+  phone?: string;
+  address?: string;
+  description?: string;
+  logoUrl?: string;
+  coverImageUrl?: string;
+  website?: string;
+  status: 'pending' | 'active' | 'suspended';
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface User {
+  id: string;
+  agencyId: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: 'owner' | 'admin' | 'agent';
+  avatarUrl?: string;
 }
 
 export interface FilterState {

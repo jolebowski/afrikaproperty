@@ -1,6 +1,7 @@
 import { ChevronDown, SlidersHorizontal, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils";
+import { AgencyFilter } from "../agency/AgencyFilter";
 import { Button } from "../ui/Button";
 
 // Helper hook for clicking outside to close dropdowns
@@ -23,6 +24,7 @@ function useOnClickOutside(ref: any, handler: any) {
 
 export function Filters() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [agencyFilter, setAgencyFilter] = useState("");
   const [isAllFiltersOpen, setIsAllFiltersOpen] = useState(false);
   const filterRef = useRef<HTMLDivElement>(null);
 
@@ -227,8 +229,13 @@ export function Filters() {
             )}
           </div>
 
-          {/* Separator */}
-          <div className="h-8 w-px bg-gray-200 mx-1 hidden sm:block" />
+            {/* Agency */}
+            <div className="w-[200px] hidden md:block">
+               <AgencyFilter value={agencyFilter} onChange={setAgencyFilter} />
+            </div>
+
+            {/* Separator */}
+            <div className="h-8 w-px bg-gray-200 mx-1 hidden sm:block" />
 
           {/* More Filters */}
           <button

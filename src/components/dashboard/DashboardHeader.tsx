@@ -2,10 +2,12 @@ import { Bell, Menu, Search, User } from "lucide-react";
 
 interface DashboardHeaderProps {
   promoterName: string;
+  agencyLogo?: string;
+  userAvatar?: string;
   onMenuClick?: () => void;
 }
 
-export function DashboardHeader({ promoterName, onMenuClick }: DashboardHeaderProps) {
+export function DashboardHeader({ promoterName, agencyLogo, userAvatar, onMenuClick }: DashboardHeaderProps) {
   return (
     <header className="sticky top-0 z-30 bg-white border-b border-gray-200">
       <div className="container-custom h-16 flex items-center justify-between">
@@ -50,7 +52,11 @@ export function DashboardHeader({ promoterName, onMenuClick }: DashboardHeaderPr
           {/* Profile */}
           <div className="flex items-center gap-3 pl-2 md:border-l border-gray-200">
             <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden border border-gray-200">
-              <User className="w-5 h-5 text-gray-500" />
+              {agencyLogo || userAvatar ? (
+                  <img src={agencyLogo || userAvatar} alt="Profile" className="w-full h-full object-cover" />
+              ) : (
+                  <User className="w-5 h-5 text-gray-500" />
+              )}
             </div>
             <span className="hidden md:block text-sm font-medium text-gray-700">
               {promoterName}

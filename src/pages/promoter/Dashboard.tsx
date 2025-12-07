@@ -4,11 +4,18 @@ import { ListingsTable } from "../../components/dashboard/ListingsTable";
 import { QuickActions } from "../../components/dashboard/QuickActions";
 import { StatsOverview } from "../../components/dashboard/StatsOverview";
 import { Reveal } from "../../components/ui/Reveal";
+import { useAuth } from "../../contexts/AuthContext";
 
 export function Dashboard() {
+  const { agency, user } = useAuth();
+  
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
-      <DashboardHeader promoterName="Horizon Immobilier" />
+      <DashboardHeader 
+        promoterName={agency?.name || user?.firstName || "Promoteur"} 
+        agencyLogo={agency?.logoUrl}
+        userAvatar={user?.avatarUrl}
+      />
 
       <main className="container-custom py-8 space-y-8">
         {/* Stats Section */}

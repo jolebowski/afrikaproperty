@@ -95,7 +95,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           <div className="p-6 border-t bg-gray-50">
             <Link to="/promoter/login" onClick={onClose}>
               <Button className="w-full mb-3">
-                {t("nav.promoterSpace", { fallback: "Espace Promoteur" })}
+                {t("nav.promoterSpace", { fallback: "Espace Pro" })}
               </Button>
             </Link>
             <p className="text-center text-xs text-gray-400">

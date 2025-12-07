@@ -7,6 +7,7 @@ export function Footer() {
 
   const quickLinks = [
     { label: t("footer.links.properties", { fallback: "Propriétés à vendre" }), path: "/properties" },
+    { label: t("footer.links.agencies", { fallback: "Nos agences" }), path: "/agencies" },
     { label: t("footer.links.invest", { fallback: "Investir au Cap-Vert" }), path: "/invest" },
     { label: t("footer.links.destinations", { fallback: "Nos destinations" }), path: "/destinations" },
     { label: t("footer.links.blog", { fallback: "Le Blog" }), path: "/blog" },
