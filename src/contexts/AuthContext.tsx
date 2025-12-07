@@ -82,6 +82,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const newAgency: Agency = {
       id: `ag_${Date.now()}`,
       name: data.agencyName,
+      type: 'agency',
       email: data.email,
       phone: data.phone,
       address: data.agencyAddress,

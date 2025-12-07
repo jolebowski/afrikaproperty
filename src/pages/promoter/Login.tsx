@@ -89,8 +89,8 @@ export function PromoterLogin() {
           </div>
 
           <div>
-            <Button type="submit" className="w-full">
-              Se connecter
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'Connexion...' : 'Se connecter'}
             </Button>
           </div>
         </form>
