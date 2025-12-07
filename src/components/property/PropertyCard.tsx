@@ -7,6 +7,8 @@ import { cn } from "../../lib/utils";
 import type { Property } from "../../types";
 import { AgencyBadge } from "../agency/AgencyBadge";
 import { Badge } from "../ui/Badge";
+import { useAuth } from "../../contexts/AuthContext";
+import { useFavorites } from "../../contexts/FavoritesContext";
 
 interface PropertyCardProps {
   property: Property;
@@ -17,6 +19,11 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const { t, formatCurrency } = useTranslation();
+  const { user, agency } = useAuth();
+  const { toggleFavorite, isFavorited } = useFavorites();
+
+  // Afficher les favoris uniquement pour les visiteurs (non connectés ou pas agency/promoter)
+  const showFavorites = !user || !agency;
 
   const nextImage = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -66,17 +73,32 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
           )}
         </div>
 
-        {/* Favorite Button */}
-        <button
-          className="absolute top-4 right-4 p-2 rounded-full bg-white/80 hover:bg-white text-gray-600 hover:text-red-500 transition-colors backdrop-blur-sm z-10"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            // Handle favorite logic
-          }}
-        >
-          <Heart className="h-5 w-5" />
-        </button>
+        {/* Favorite Button - Only for visitors */}
+        {showFavorites && (
+          <button
+            className={cn(
+              "absolute top-4 right-4 p-2 rounded-full bg-white hover:bg-white transition-all duration-300 shadow-lg z-20 hover:scale-110 active:scale-95",
+              isFavorited(property.id)
+                ? "text-red-500 hover:text-red-600"
+                : "text-gray-700 hover:text-red-500"
+            )}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              toggleFavorite(property.id);
+            }}
+            title={isFavorited(property.id) ? t("property.removeFromFavorites", { fallback: "Retirer des favoris" }) : t("property.addToFavorites", { fallback: "Ajouter aux favoris" })}
+          >
+            <Heart
+              className={cn(
+                "h-5 w-5 transition-all duration-300",
+                isFavorited(property.id)
+                  ? "fill-current animate-pulse"
+                  : ""
+              )}
+            />
+          </button>
+        )}
 
         {/* Image Navigation */}
         {property.images.length > 1 && isHovered && (

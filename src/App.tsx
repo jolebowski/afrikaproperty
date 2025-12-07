@@ -1,7 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Footer } from "./components/layout/Footer";
 import { Header } from "./components/layout/Header";
-import { ToastProvider } from "./components/ui/Toast";
 import { About } from "./pages/About";
 import { Agencies } from "./pages/Agencies";
 import { AgencyProfile } from "./pages/AgencyProfile";
@@ -11,6 +10,7 @@ import { Contact } from "./pages/Contact";
 import { DestinationDetail } from "./pages/DestinationDetail";
 import { Destinations } from "./pages/Destinations";
 import { FAQ } from "./pages/FAQ";
+import { Favorites } from "./pages/Favorites";
 import { Home } from "./pages/Home";
 import { Invest } from "./pages/Invest";
 import { Legal } from "./pages/Legal";
@@ -31,15 +31,15 @@ import { PromoterSignup } from "./pages/promoter/Signup";
 
 function App() {
   return (
-    <ToastProvider>
-      <Router>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <div className="flex-grow">
-            <Routes>
+    <Router>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <div className="flex-grow">
+          <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/properties" element={<PropertiesList />} />
               <Route path="/properties/:id" element={<PropertyDetail />} />
+              <Route path="/favorites" element={<Favorites />} />
               <Route path="/invest" element={<Invest />} />
               <Route path="/destinations" element={<Destinations />} />
               <Route path="/destinations/:slug" element={<DestinationDetail />} />
@@ -73,11 +73,10 @@ function App() {
               <Route path="*" element={<NotFound />} />
               {/* Add other routes here as we build them */}
             </Routes>
-          </div>
-          <Footer />
         </div>
-      </Router>
-    </ToastProvider>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

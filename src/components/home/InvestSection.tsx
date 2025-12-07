@@ -86,9 +86,9 @@ export function InvestSection() {
           {/* Benefits Grid */}
           <div className="lg:w-7/12 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
             {benefits.map((benefit, index) => (
-              <Reveal key={index} delay={index * 0.1 + 0.2} width="100%">
+              <Reveal key={index} delay={index * 0.1 + 0.2} width="100%" className="h-full flex flex-col">
                 <div 
-                  className="group p-10 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-xl hover:shadow-gray-200/50 transition-all duration-500 border border-transparent hover:border-gray-100"
+                  className="group p-10 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-xl hover:shadow-gray-200/50 transition-all duration-500 border border-transparent hover:border-gray-100 h-full flex flex-col"
                 >
                   <div className="h-16 w-16 rounded-2xl bg-white shadow-sm flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform duration-500">
                     <benefit.icon className="h-8 w-8" />

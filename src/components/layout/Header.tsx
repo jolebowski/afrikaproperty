@@ -6,12 +6,19 @@ import { cn } from "../../lib/utils";
 import { Button } from "../ui/Button";
 import { LanguageSelector } from "./LanguageSelector";
 import { MobileNav } from "./MobileNav";
+import { useAuth } from "../../contexts/AuthContext";
+import { useFavorites } from "../../contexts/FavoritesContext";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { t } = useTranslation();
+  const { user, agency, logout } = useAuth();
+  const { unreadCount } = useFavorites();
+
+  // Afficher les favoris uniquement pour les visiteurs (non connectés ou pas agency/promoter)
+  const showFavorites = !user || !agency;
 
   // Check if we are on the home page to handle transparency
   const isHomePage = location.pathname === "/";
@@ -84,16 +91,23 @@ export function Header() {
           <div className="hidden md:flex items-center gap-4">
             <LanguageSelector tone={isScrolled || !isHomePage ? "light" : "dark"} />
 
-            <Link to="/favorites">
-              <button 
-                className={cn(
-                  "p-2 rounded-full transition-colors hover:bg-white/10",
-                  isScrolled || !isHomePage ? "text-text-secondary hover:bg-gray-100" : "text-white"
-                )}
-              >
-                <Heart className="h-5 w-5" />
-              </button>
-            </Link>
+            {showFavorites && (
+              <Link to="/favorites" className="relative">
+                <button
+                  className={cn(
+                    "p-2 rounded-full transition-colors hover:bg-white/10",
+                    isScrolled || !isHomePage ? "text-text-secondary hover:bg-gray-100" : "text-white"
+                  )}
+                >
+                  <Heart className="h-5 w-5" />
+                  {unreadCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium animate-pulse">
+                      {unreadCount > 9 ? '9+' : unreadCount}
+                    </span>
+                  )}
+                </button>
+              </Link>
+            )}
 
             <Link to="/profile">
               <button 
@@ -106,16 +120,28 @@ export function Header() {
               </button>
             </Link>
 
-            <Link to="/promoter/login">
+            {user ? (
               <Button
+                onClick={logout}
                 variant={isScrolled || !isHomePage ? "outline" : "primary"}
                 className={cn(
                   !isScrolled && isHomePage && "bg-white text-primary hover:bg-white/90"
                 )}
               >
-                {t("nav.promoterSpace", { fallback: "Espace Pro" })}
+                {t("nav.logout", { fallback: "Déconnexion" })}
               </Button>
-            </Link>
+            ) : (
+              <Link to="/promoter/login">
+                <Button
+                  variant={isScrolled || !isHomePage ? "outline" : "primary"}
+                  className={cn(
+                    !isScrolled && isHomePage && "bg-white text-primary hover:bg-white/90"
+                  )}
+                >
+                  {t("nav.promoterSpace", { fallback: "Espace Pro" })}
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Toggle */}

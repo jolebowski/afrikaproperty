@@ -49,7 +49,8 @@ export const PROPERTIES: Property[] = [
     bathrooms: 2,
     area: 120,
     images: [
-      "https://images.unsplash.com/photo-1600596542815-2495db9dc2c3?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=2070&auto=format&fit=crop"
     ],
     agencyId: "ag_3"
   },
