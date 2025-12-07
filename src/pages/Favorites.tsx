@@ -35,6 +35,9 @@ export function Favorites() {
                      <p className="text-gray-500">
                         {favoritesCount} {t("property.list.resultsLabel", { fallback: "propriétés sauvegardées" })}
                     </p>
+                    <p className="text-xs text-gray-400 mt-1 italic">
+                        {t("favorites.localStorageParams", { fallback: "Votre sélection est conservée sur cet appareil pour votre prochaine visite." })}
+                    </p>
                 </div>
 
                 {favoritesCount > 0 && (

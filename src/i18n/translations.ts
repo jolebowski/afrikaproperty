@@ -568,16 +568,11 @@ export const translations: Record<Language, TranslationDict> = {
       totalEarned: "Total gagné",
       received: "Reçu",
       allTime: "Depuis le début",
-      transactions: "transactions",
-      recentActivity: "Activité récente",
-      noRecentSales: "Aucune vente récente",
-      viewAllCommissions: "Voir toutes les commissions",
       completedSales: "ventes réalisées",
       rate: "Taux",
     },
+
     services: {
-      title: "Services Professionnels",
-      subtitle: "Des experts à vos côtés pour réussir votre investissement",
       hero: {
         title: "Services Professionnels",
         subtitle: "Banques, avocats et conseillers : les meilleurs experts pour réussir votre investissement au Cap-Vert."
@@ -671,6 +666,16 @@ export const translations: Record<Language, TranslationDict> = {
         activeLeads: "Leads Actifs",
         pendingCommissions: "Commissions à venir"
       }
+    },
+    favorites: {
+      title: "Vos favoris",
+      clearAll: "Tout effacer",
+      empty: {
+        title: "Votre liste est vide",
+        description: "Vous n'avez pas encore ajouté de propriétés à vos favoris.",
+        action: "Découvrir les propriétés"
+      },
+      localStorageParams: "Votre sélection est conservée sur cet appareil pour votre prochaine visite.",
     },
   },
   en: {
@@ -1228,6 +1233,16 @@ export const translations: Record<Language, TranslationDict> = {
       completedSales: "completed sales",
       rate: "Rate",
     },
+    favorites: {
+      title: "Your Favorites",
+      clearAll: "Clear all",
+      empty: {
+        title: "Your list is empty",
+        description: "You haven't added any properties to your favorites yet.",
+        action: "Discover properties"
+      },
+      localStorageParams: "Your selection is saved on this device for your next visit.",
+    },
   },
   pt: { // Inserting into PT
     common: {
@@ -1734,6 +1749,16 @@ export const translations: Record<Language, TranslationDict> = {
         "Os nossos conselheiros estão disponíveis para estudar o seu projeto e apresentar as melhores oportunidades.",
       ctaButton: "Pedir uma consulta gratuita",
     },
+    favorites: {
+      title: "Os seus Favoritos",
+      clearAll: "Limpar tudo",
+      empty: {
+        title: "A sua lista está vazia",
+        description: "Ainda não adicionou propriedades aos seus favoritos.",
+        action: "Descobrir propriedades"
+      },
+      localStorageParams: "A sua seleção é guardada neste dispositivo para a sua próxima visita.",
+    },
   },
   cv: {
     common: {
@@ -2228,6 +2253,16 @@ export const translations: Record<Language, TranslationDict> = {
       ctaText:
         "Nos konselhéru sta disponívl pa studa bu projetu i propozi melhór opurtunidade.",
       ctaButton: "Pidi konsulta gratís",
+    },
+    favorites: {
+      title: "Bus Favoritus",
+      clearAll: "Limpa tudu",
+      empty: {
+        title: "Bu lista sta vaziu",
+        description: "Inda bu ka pui ninhun propiedade na bu favoritus.",
+        action: "Dikubri propriedades"
+      },
+      localStorageParams: "Bu seleson sta guardadu na es dispositivu pa bu próximu visita.",
     },
   },
 };
