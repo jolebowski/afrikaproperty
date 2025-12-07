@@ -1,3 +1,4 @@
+import { CommissionWidget } from "../../components/dashboard/CommissionWidget";
 import { DashboardHeader } from "../../components/dashboard/DashboardHeader";
 import { LeadsWidget } from "../../components/dashboard/LeadsWidget";
 import { ListingsTable } from "../../components/dashboard/ListingsTable";
@@ -20,7 +21,7 @@ export function Dashboard() {
       <main className="container-custom py-8 space-y-8">
         {/* Stats Section */}
         <section>
-          <Reveal>
+          <Reveal width="100%">
             <StatsOverview />
           </Reveal>
         </section>
@@ -30,19 +31,24 @@ export function Dashboard() {
           
           {/* Left Column: Listings */}
           <div className="lg:col-span-2 space-y-8">
-            <Reveal delay={0.1}>
+            <Reveal delay={0.1} width="100%">
               <ListingsTable />
             </Reveal>
           </div>
 
           {/* Right Column: Leads & Actions */}
           <div className="space-y-8">
-            <Reveal delay={0.2}>
+            <Reveal delay={0.2} width="100%">
               <QuickActions />
             </Reveal>
-            <Reveal delay={0.3}>
+            <Reveal delay={0.3} width="100%">
               <LeadsWidget />
             </Reveal>
+            {agency?.type === 'promoter' && (
+              <Reveal delay={0.4} width="100%">
+                <CommissionWidget />
+              </Reveal>
+            )}
           </div>
           
         </div>

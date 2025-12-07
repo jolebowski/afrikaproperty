@@ -1,7 +1,10 @@
-import { Edit, Eye, MessageSquare, MoreHorizontal, Pause, Play, Trash2 } from "lucide-react";
+import { DollarSign, Edit, Eye, MessageSquare, MoreHorizontal, Pause, Play, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "../../components/ui/Toast";
+import { useAuth } from "../../contexts/AuthContext";
+import type { Property } from "../../types";
+import SaleModal from "../property/SaleModal";
 import { AvailabilityBadge, type AvailabilityStatus } from "./ui/AvailabilityBadge";
 import { DashboardButton } from "./ui/DashboardButton";
 import { type ListingStatus, StatusBadge } from "./ui/StatusBadge";
@@ -79,7 +82,10 @@ const INITIAL_LISTINGS: Listing[] = [
 export function ListingsTable() {
   const { addToast } = useToast();
   const navigate = useNavigate();
+  const { user, agency } = useAuth();
   const [listings, setListings] = useState<Listing[]>(INITIAL_LISTINGS);
+  const [selectedPropertyForSale, setSelectedPropertyForSale] = useState<Property | null>(null);
+  const [showSaleModal, setShowSaleModal] = useState(false);
 
   const handleEdit = (id: string) => {
     addToast("Redirection vers l'édition...", "info");
@@ -108,6 +114,69 @@ export function ListingsTable() {
       setListings(prev => prev.filter(l => l.id !== id));
       addToast("Annonce supprimée définitivement", "error");
     }
+  };
+
+  const handleMarkAsSold = (listing: Listing) => {
+    // Convert listing to Property format for the modal
+    const property: Property = {
+      id: listing.id,
+      title: listing.title,
+      location: listing.location,
+      price: parseFloat(listing.price.replace(/[^\d]/g, '')), // Extract number from price string
+      currency: 'EUR',
+      type: 'sale',
+      status: 'available',
+      bedrooms: 3, // Default values for demo
+      bathrooms: 2,
+      area: 120,
+      images: [listing.image],
+      agencyId: user?.agencyId || 'agency1',
+    };
+
+    setSelectedPropertyForSale(property);
+    setShowSaleModal(true);
+  };
+
+  const handleConfirmSale = (saleData: any) => {
+    // Update the listing status to sold
+    setListings(prev => prev.map(listing => {
+      if (listing.id === saleData.property.id) {
+        return { ...listing, availability: 'sold' as AvailabilityStatus };
+      }
+      return listing;
+    }));
+
+    // Save commission to persistent store
+    const newCommission: any = {
+      id: `com_${Date.now()}`,
+      propertyId: saleData.property.id,
+      agentId: user?.id || 'unknown',
+      agencyId: agency?.id || 'unknown',
+      propertyTitle: saleData.property.title,
+      salePrice: saleData.salePrice,
+      commissionRate: saleData.commissionRate,
+      commissionAmount: saleData.commissionAmount,
+      currency: saleData.property.currency,
+      status: 'pending',
+      saleDate: saleData.saleDate,
+      notes: saleData.notes,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    
+    // Dynamically import to avoid circular dependencies if any (or just standard import)
+    // We'll use the standard import added to the top of the file
+    // @ts-ignore
+    import('../../utils/commissionStore').then(mod => {
+        mod.addCommission(newCommission);
+        
+        const commissionMessage = `Vente enregistrée ! Commission de ${saleData.commissionAmount.toLocaleString()} ${saleData.property.currency} (${saleData.commissionRate.toFixed(2)}%)`;
+        addToast(commissionMessage, "success");
+    });
+
+    // Close the modal
+    setShowSaleModal(false);
+    setSelectedPropertyForSale(null);
   };
 
   return (
@@ -167,23 +236,32 @@ export function ListingsTable() {
                 </td>
                 <td className="px-6 py-4 text-right">
                   <div className="flex items-center justify-end gap-2">
-                    <button 
+                    {listing.availability !== 'sold' && agency?.type === 'promoter' && (
+                      <button
+                        onClick={() => handleMarkAsSold(listing)}
+                        className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-md transition-colors"
+                        title="Marquer comme vendu"
+                      >
+                        <DollarSign className="w-4 h-4" />
+                      </button>
+                    )}
+                    <button
                       onClick={() => handleEdit(listing.id)}
-                      className="p-2 text-gray-400 hover:text-[#C7A86A] hover:bg-[#C7A86A]/10 rounded-md transition-colors" 
+                      className="p-2 text-gray-400 hover:text-[#C7A86A] hover:bg-[#C7A86A]/10 rounded-md transition-colors"
                       title="Modifier"
                     >
                       <Edit className="w-4 h-4" />
                     </button>
-                    <button 
+                    <button
                       onClick={() => handlePause(listing.id, listing.status)}
-                      className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors" 
+                      className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
                       title={listing.status === 'published' ? "Mettre en pause" : "Réactiver"}
                     >
                       {listing.status === 'published' ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleDelete(listing.id)}
-                      className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors" 
+                      className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors"
                       title="Supprimer"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -244,6 +322,19 @@ export function ListingsTable() {
           Voir toutes les annonces
         </button>
       </div>
+
+      {/* Sale Modal */}
+      {selectedPropertyForSale && (
+        <SaleModal
+          property={selectedPropertyForSale}
+          isOpen={showSaleModal}
+          onClose={() => {
+            setShowSaleModal(false);
+            setSelectedPropertyForSale(null);
+          }}
+          onConfirmSale={handleConfirmSale}
+        />
+      )}
     </div>
   );
 }

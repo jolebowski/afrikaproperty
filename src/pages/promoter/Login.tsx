@@ -1,14 +1,32 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/ui/Button";
 import { Input } from "../../components/ui/Input";
+import { useToast } from "../../components/ui/Toast";
+import { useAuth } from "../../contexts/AuthContext";
 
 export function PromoterLogin() {
   const navigate = useNavigate();
+  const { login } = useAuth();
+  const { addToast } = useToast();
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Mock login
-    navigate("/promoter/dashboard");
+    setLoading(true);
+    
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email') as string;
+
+    try {
+        await login(email);
+        addToast("Connexion réussie", "success");
+        navigate("/promoter/dashboard");
+    } catch (error) {
+        addToast("Erreur de connexion", "error");
+    } finally {
+        setLoading(false);
+    }
   };
 
   return (

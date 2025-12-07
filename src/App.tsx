@@ -25,6 +25,7 @@ import { PromoterLogin } from "./pages/promoter/Login";
 import { PromoterLeads } from "./pages/promoter/PromoterLeads";
 import { PromoterProfile } from "./pages/promoter/PromoterProfile";
 import { PromoterSignup } from "./pages/promoter/Signup";
+import Commissions from "./pages/promoter/Commissions";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
               <Route path="/promoter/listings/create" element={<CreateListing />} />
               <Route path="/promoter/listings/edit/:id" element={<EditListing />} />
               <Route path="/promoter/leads" element={<PromoterLeads />} />
+              <Route path="/promoter/commissions" element={<Commissions />} />
               <Route path="/promoter/profile" element={<PromoterProfile />} />
               
               {/* Blog Routes */}

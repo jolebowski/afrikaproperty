@@ -1,9 +1,11 @@
-import { Mail, Phone, Search } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Search } from "lucide-react";
+import { Link } from "react-router-dom";
 import { DashboardHeader } from "../../components/dashboard/DashboardHeader";
 import { DashboardButton } from "../../components/dashboard/ui/DashboardButton";
 import { Input } from "../../components/ui/Input";
 import { Reveal } from "../../components/ui/Reveal";
 import { useToast } from "../../components/ui/Toast";
+import { useTranslation } from "../../i18n/I18nProvider";
 
 interface Lead {
   id: string;
@@ -60,6 +62,7 @@ const MOCK_LEADS: Lead[] = [
 ];
 
 export function PromoterLeads() {
+  const { t } = useTranslation();
   const { addToast } = useToast();
 
   const handleReply = (email: string) => {
@@ -71,28 +74,37 @@ export function PromoterLeads() {
     <div className="min-h-screen bg-gray-50 pb-20">
       <DashboardHeader promoterName="Horizon Immobilier" />
 
-      <main className="container-custom py-8 space-y-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <Reveal>
-            <h1 className="text-2xl font-serif font-bold text-gray-900">Mes Leads</h1>
-            <p className="text-gray-500">Gérez vos contacts et demandes d'information.</p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="flex gap-2">
-              <DashboardButton variant="secondary">Exporter CSV</DashboardButton>
-            </div>
-          </Reveal>
+      <main className="container-custom py-8">
+        
+        {/* Back Link Style (CreateListing style) */}
+        <div className="mb-6 flex items-center justify-between">
+            <Link to="/promoter/dashboard" className="inline-flex items-center text-gray-500 hover:text-[#C7A86A] transition-colors">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              {t("common.backToDashboard")}
+            </Link>
         </div>
 
-        <Reveal delay={0.2}>
+        <Reveal delay={0.1}>
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+             
+            {/* Header inside the card */}
+            <div className="p-6 border-b border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 className="text-2xl font-serif font-bold text-gray-900">Mes Leads</h1>
+                    <p className="text-gray-500 text-sm mt-1">Gérez vos contacts et demandes d'information.</p>
+                </div>
+                <div className="flex gap-2">
+                    <DashboardButton variant="secondary" size="sm">Exporter CSV</DashboardButton>
+                </div>
+            </div>
+
             {/* Filters */}
-            <div className="p-4 border-b border-gray-200 flex flex-col md:flex-row gap-4">
+            <div className="p-4 border-b border-gray-200 flex flex-col md:flex-row gap-4 bg-gray-50/50">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <Input placeholder="Rechercher par nom, email..." className="pl-9 focus:border-[#C7A86A] focus:ring-[#C7A86A]" />
+                <Input placeholder="Rechercher par nom, email..." className="pl-9 focus:border-[#C7A86A] focus:ring-[#C7A86A] bg-white" />
               </div>
-              <select className="h-10 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C7A86A] focus:border-[#C7A86A]">
+              <select className="h-10 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C7A86A] focus:border-[#C7A86A] bg-white">
                 <option value="all">Tous les statuts</option>
                 <option value="new">Nouveaux</option>
                 <option value="open">En cours</option>

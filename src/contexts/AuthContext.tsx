@@ -17,9 +17,21 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [user, setUser] = useState<User | null>(null);
   const [agency, setAgency] = useState<Agency | null>(null);
 
-  // Mock initial login check (optional)
+  // Load from localStorage on mount
   useEffect(() => {
-    // Check localStorage or similar in real app
+    const storedUser = localStorage.getItem('capvert_user');
+    const storedAgency = localStorage.getItem('capvert_agency');
+    
+    if (storedUser && storedAgency) {
+        try {
+            setUser(JSON.parse(storedUser));
+            setAgency(JSON.parse(storedAgency));
+        } catch (e) {
+            console.error("Failed to restore auth session", e);
+            localStorage.removeItem('capvert_user');
+            localStorage.removeItem('capvert_agency');
+        }
+    }
   }, []);
 
   const login = async (email: string) => {
@@ -32,6 +44,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     
     if (!targetAgency) {
         // Fallback for demo: just pick the first one if email is valid
+        // BUT prioritize finding a promoter if we want to test promoter features?
+        // Let's stick to strict email matching or fallback to Agency 1
         targetAgency = AGENCIES[0];
     }
 
@@ -47,11 +61,17 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     setUser(mockUser);
     setAgency(targetAgency);
+
+    // Persist
+    localStorage.setItem('capvert_user', JSON.stringify(mockUser));
+    localStorage.setItem('capvert_agency', JSON.stringify(targetAgency));
   };
 
   const logout = () => {
     setUser(null);
     setAgency(null);
+    localStorage.removeItem('capvert_user');
+    localStorage.removeItem('capvert_agency');
   };
 
   const signup = async (data: any) => {

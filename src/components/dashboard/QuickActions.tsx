@@ -1,18 +1,30 @@
-import { ArrowRight, PlusCircle, Settings, Users } from "lucide-react";
+import { ArrowRight, DollarSign, PlusCircle, Settings, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 export function QuickActions() {
+  const { agency } = useAuth();
+
   const actions = [
     { label: "Créer une annonce", icon: PlusCircle, primary: true, path: "/promoter/listings/create" },
     { label: "Voir mes leads", icon: Users, path: "/promoter/leads" },
+    { 
+      label: "Mes commissions", 
+      icon: DollarSign, 
+      path: "/promoter/commissions",
+      // Only show for promoters
+      hidden: agency?.type !== 'promoter' 
+    },
     { label: "Mon profil", icon: Settings, path: "/promoter/profile" },
   ];
+
+  const visibleActions = actions.filter(action => !action.hidden);
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden p-6">
       <h2 className="text-lg font-serif font-bold text-gray-900 mb-4">Actions Rapides</h2>
       <div className="space-y-3">
-        {actions.map((action, index) => (
+        {visibleActions.map((action, index) => (
           <Link
             key={index}
             to={action.path}
