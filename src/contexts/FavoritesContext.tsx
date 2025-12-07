@@ -99,8 +99,8 @@ export function useFavorites() {
     // Cela permet d'utiliser PropertyCard partout sans erreur
     return {
       favorites: [],
-      toggleFavorite: (propertyId: string) => console.log('FavoritesProvider not available'),
-      isFavorited: (propertyId: string) => false,
+      toggleFavorite: () => {},
+      isFavorited: () => false,
       getFavorites: () => [],
       clearAllFavorites: () => {},
       favoritesCount: 0,

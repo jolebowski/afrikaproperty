@@ -121,9 +121,9 @@ export const useAuth = () => {
       user: null,
       agency: null,
       isAuthenticated: false,
-      login: async (email: string) => console.log('AuthProvider not available'),
-      logout: () => console.log('AuthProvider not available'),
-      signup: async (data: any) => console.log('AuthProvider not available')
+      login: async () => {},
+      logout: () => {},
+      signup: async () => {}
     };
   }
   return context;
