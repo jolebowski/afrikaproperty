@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Footer } from "./components/layout/Footer";
 import { Header } from "./components/layout/Header";
+import { ScrollToTop } from "./components/layout/ScrollToTop";
 import { About } from "./pages/About";
 import { Agencies } from "./pages/Agencies";
 import { AgencyProfile } from "./pages/AgencyProfile";
@@ -32,6 +33,7 @@ import { PromoterSignup } from "./pages/promoter/Signup";
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="flex flex-col min-h-screen">
         <Header />
         <div className="flex-grow">

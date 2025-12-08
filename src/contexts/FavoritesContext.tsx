@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
 
 interface FavoritesContextType {
   favorites: string[];
@@ -43,19 +43,19 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
     }
   }, [favorites]);
 
-  const toggleFavorite = (propertyId: string) => {
-    const isRemoving = favorites.includes(propertyId);
+  const toggleFavorite = useCallback((propertyId: string) => {
+    setFavorites(prev => {
+      const isRemoving = prev.includes(propertyId);
 
-    if (isRemoving) {
-      // Retirer des favoris
-      setFavorites(prev => prev.filter(id => id !== propertyId));
-    } else {
-      // Ajouter aux favoris
-      setFavorites(prev => [...prev, propertyId]);
-      // Incrémenter le compteur non lu
-      setUnreadCount(prev => prev + 1);
-    }
-  };
+      if (isRemoving) {
+        // Retirer des favoris
+        return prev.filter(id => id !== propertyId);
+      } else {
+        // Ajouter aux favoris
+        return [...prev, propertyId];
+      }
+    });
+  }, []);
 
   const isFavorited = (propertyId: string) => {
     return favorites.includes(propertyId);
@@ -65,14 +65,14 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
     return favorites;
   };
 
-  const clearAllFavorites = () => {
+  const clearAllFavorites = useCallback(() => {
     setFavorites([]);
     setUnreadCount(0);
-  };
+  }, []);
 
-  const markAsRead = () => {
+  const markAsRead = useCallback(() => {
     setUnreadCount(0);
-  };
+  }, []);
 
   const value = {
     favorites,

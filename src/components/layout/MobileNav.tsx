@@ -4,7 +4,6 @@ import { useTranslation } from "../../i18n/I18nProvider";
 import { cn } from "../../lib/utils";
 import { Button } from "../ui/Button";
 import { useAuth } from "../../contexts/AuthContext";
-import { useFavorites } from "../../contexts/FavoritesContext";
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -14,7 +13,6 @@ interface MobileNavProps {
 export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const { t, language, setLanguage, languages } = useTranslation();
   const { user, agency, logout } = useAuth();
-  const { unreadCount } = useFavorites();
 
   // Afficher les favoris uniquement pour les visiteurs (non connectés ou pas agency/promoter)
   const showFavorites = !user || !agency;
@@ -26,7 +24,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
     { label: t("nav.destinations", { fallback: "Destinations" }), path: "/destinations" },
     { label: t("nav.blog", { fallback: "Blog" }), path: "/blog" },
     ...(showFavorites ? [{
-      label: `${t("nav.favorites", { fallback: "Favoris" })}${unreadCount > 0 ? ` (${unreadCount})` : ''}`,
+      label: t("nav.favorites", { fallback: "Favoris" }),
       path: "/favorites"
     }] : []),
     { label: t("nav.profile", { fallback: "Mon Profil" }), path: "/profile" },

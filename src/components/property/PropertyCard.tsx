@@ -9,6 +9,7 @@ import { AgencyBadge } from "../agency/AgencyBadge";
 import { Badge } from "../ui/Badge";
 import { useAuth } from "../../contexts/AuthContext";
 import { useFavorites } from "../../contexts/FavoritesContext";
+import { useToast } from "../ui/Toast";
 
 interface PropertyCardProps {
   property: Property;
@@ -21,6 +22,7 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
   const { t, formatCurrency } = useTranslation();
   const { user, agency } = useAuth();
   const { toggleFavorite, isFavorited } = useFavorites();
+  const { addToast } = useToast();
 
   // Afficher les favoris uniquement pour les visiteurs (non connectés ou pas agency/promoter)
   const showFavorites = !user || !agency;
@@ -85,7 +87,12 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
+              const isCurrentlyFavorited = isFavorited(property.id);
               toggleFavorite(property.id);
+              // Afficher le toast seulement quand on ajoute aux favoris
+              if (!isCurrentlyFavorited) {
+                addToast(t("property.addedToFavorites", { fallback: "Ajouté aux favoris" }), "success");
+              }
             }}
             title={isFavorited(property.id) ? t("property.removeFromFavorites", { fallback: "Retirer des favoris" }) : t("property.addToFavorites", { fallback: "Ajouter aux favoris" })}
           >
